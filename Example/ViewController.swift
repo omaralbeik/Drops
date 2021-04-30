@@ -59,6 +59,7 @@ final class ViewController: UIViewController {
 
     private let drops: [(title: String, drop: Drop)] = [
         ("Title", .title),
+        ("Title Dismissal Duration(0.2)", .titleWithCustomDismissalDuration),
         ("Title + subtitle", .titleSubtitle),
         ("Icon + Title + Subtitle", .titleSubtitleIcon),
         ("Title + Action", .titleAction),

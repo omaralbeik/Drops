@@ -46,15 +46,23 @@ public struct Drop {
     ///   - subtitle: Optional subtitle. Default to `nil`.
     ///   - icon: Optional icon.
     ///   - action: Optional action.
-    public init(title: String, subtitle: String? = nil, icon: UIImage? = nil, action: Action? = nil) {
+    public init(
+        title: String,
+        subtitle: String? = nil,
+        icon: UIImage? = nil,
+        dismissalDuration: Double = 2.0,
+        action: Action? = nil
+    ) {
         self.title = title
         self.subtitle = subtitle
         self.icon = icon
         self.action = action
+        self.dismissalDuration = dismissalDuration
     }
 
     public let title: String
     public let subtitle: String?
     public let icon: UIImage?
+    public let dismissalDuration: Double
     public let action: Action?
 }
