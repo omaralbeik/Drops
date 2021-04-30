@@ -47,6 +47,14 @@ internal final class DropViewController: UIViewController {
 
         view.addSubview(dropView)
 
+        dropView.layer.shadowColor = UIColor.black.cgColor
+        dropView.layer.shadowOffset = .zero
+        dropView.layer.shadowRadius = 15
+        dropView.layer.shadowOpacity = 0.15
+        dropView.layer.masksToBounds = false
+        dropView.layer.shouldRasterize = true
+        dropView.layer.rasterizationScale = UIScreen.main.scale
+
         dropView.translatesAutoresizingMaskIntoConstraints = false
 
         let safeArea = view.safeAreaLayoutGuide

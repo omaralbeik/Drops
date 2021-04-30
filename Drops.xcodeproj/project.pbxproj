@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0733F910263B83F800590716 /* Drop+Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0733F90F263B83F800590716 /* Drop+Examples.swift */; };
 		0755C1DC263A29A9002209FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D8149D26361DE8003F51DB /* ViewController.swift */; };
 		0755C1DE263A29A9002209FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D8149926361DE8003F51DB /* AppDelegate.swift */; };
 		0755C1F8263B5C90002209FD /* UIViewController+Drops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755C1E5263B4D66002209FD /* UIViewController+Drops.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0733F90F263B83F800590716 /* Drop+Examples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Drop+Examples.swift"; sourceTree = "<group>"; };
 		0755C1E1263A4EF0002209FD /* DropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropView.swift; sourceTree = "<group>"; };
 		0755C1E3263A4F07002209FD /* PassthroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
 		0755C1E5263B4D66002209FD /* UIViewController+Drops.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Drops.swift"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				07D8149926361DE8003F51DB /* AppDelegate.swift */,
 				07D8149D26361DE8003F51DB /* ViewController.swift */,
+				0733F90F263B83F800590716 /* Drop+Examples.swift */,
 				07D814A226361DE9003F51DB /* Assets.xcassets */,
 				07D814A426361DE9003F51DB /* LaunchScreen.storyboard */,
 				07D814A726361DE9003F51DB /* Info.plist */,
@@ -351,6 +354,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0733F910263B83F800590716 /* Drop+Examples.swift in Sources */,
 				0755C1DE263A29A9002209FD /* AppDelegate.swift in Sources */,
 				0755C1DC263A29A9002209FD /* ViewController.swift in Sources */,
 			);

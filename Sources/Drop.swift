@@ -53,8 +53,8 @@ public struct Drop {
         self.action = action
     }
 
-    internal let title: String
-    internal let subtitle: String?
-    internal let icon: UIImage?
-    internal let action: Action?
+    public let title: String
+    public let subtitle: String?
+    public let icon: UIImage?
+    public let action: Action?
 }

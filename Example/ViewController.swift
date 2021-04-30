@@ -25,36 +25,61 @@ import UIKit
 import Drops
 
 final class ViewController: UIViewController {
+    enum Section {
+        case main
+    }
+    typealias Row = String
+    typealias DataSource = UITableViewDiffableDataSource<Section, Row>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Row>
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
+        title = "Drops"
+        view.addSubview(tableView)
 
-        view.addSubview(button)
         NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+
+        dataSource = .init(tableView: tableView) { view, _, row in
+            let cell = view.dequeueReusableCell(withIdentifier: "cell")
+            cell?.textLabel?.text = row
+            return cell
+        }
+
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(drops.map(\.title))
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
 
-    private lazy var button: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Show Drop", for: .normal)
-        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-        return button
+    private let drops: [(title: String, drop: Drop)] = [
+        ("Title", .title),
+        ("Title + subtitle", .titleSubtitle),
+        ("Icon + Title + Subtitle", .titleSubtitleIcon),
+        ("Title + Action", .titleAction),
+        ("Title + Subtitle + Action", .titleSubtitleAction)
+    ]
+
+    private lazy var tableView: UITableView = {
+        let view = UITableView(frame: self.view.frame, style: .insetGrouped)
+        view.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        view.dataSource = dataSource
+        view.delegate = self
+        return view
     }()
 
-    @objc
-    private func didTapButton(_ button: UIButton) {
-        let drop = Drop(
-            title: "Hello World!",
-            subtitle: "I am a drop",
-            icon: UIImage(systemName: "drop.fill"),
-            action: .init(handler: { [weak self] in
-                self?.dismiss(animated: true)
-            })
-        )
+    private var dataSource: DataSource!
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let drop = drops[indexPath.row].drop
         present(drop: drop)
     }
 }

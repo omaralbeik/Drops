@@ -64,7 +64,7 @@ internal final class DropView: UIView {
             button.widthAnchor.constraint(equalToConstant: 35)
         ]
 
-        var insets = UIEdgeInsets(top: 7.5, left: 15, bottom: 7.5, right: 15)
+        var insets = UIEdgeInsets(top: 7.5, left: 12.5, bottom: 7.5, right: 12.5)
 
         if drop.icon == nil {
             insets.left = 40
@@ -75,16 +75,16 @@ internal final class DropView: UIView {
         }
 
         if drop.subtitle == nil && (drop.icon == nil || drop.action?.icon == nil) {
-            insets.top = 15
-            insets.bottom = 15
+            insets.top = 12.5
+            insets.bottom = 12.5
         }
 
         if drop.icon == nil && drop.action?.icon == nil {
             insets.left = 50
             insets.right = 50
             if drop.subtitle == nil {
-                insets.top = 15
-                insets.bottom = 15
+                insets.top = 12.5
+                insets.bottom = 12.5
             }
         }
 
