@@ -81,6 +81,11 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let drop = drops[indexPath.row].drop
-        present(drop: drop)
+        switch drop {
+        case .titleWithCustomDismissalDuration:
+            present(drop: drop, duration: .init(0.2))
+        default:
+            present(drop: drop)
+        }
     }
 }

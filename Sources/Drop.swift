@@ -50,19 +50,33 @@ public struct Drop {
         title: String,
         subtitle: String? = nil,
         icon: UIImage? = nil,
-        dismissalDuration: Double = 2.0,
         action: Action? = nil
     ) {
         self.title = title
         self.subtitle = subtitle
         self.icon = icon
         self.action = action
-        self.dismissalDuration = dismissalDuration
     }
 
     public let title: String
     public let subtitle: String?
     public let icon: UIImage?
-    public let dismissalDuration: Double
     public let action: Action?
+}
+
+// MARK: - Equatable Functions
+extension Drop: Equatable {
+    public static func == (lhs: Drop, rhs: Drop) -> Bool {
+        return lhs.title == rhs.title
+            && lhs.subtitle == rhs.subtitle
+            && lhs.icon == rhs.icon
+            && lhs.action == rhs.action
+    }
+}
+
+extension Drop.Action: Equatable {
+    public static func == (lhs: Drop.Action, rhs: Drop.Action) -> Bool {
+        return lhs.icon == rhs.icon
+            && lhs.handler() == rhs.handler()
+    }
 }

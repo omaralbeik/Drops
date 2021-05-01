@@ -26,13 +26,13 @@ import UIKit
 internal final class Presenter: NSObject {
     let transition = Transition()
 
-    func present(drop: Drop, from parent: UIViewController) {
+    func present(drop: Drop, from parent: UIViewController, duration: TimeInterval) {
         let dropController = DropViewController(drop: drop)
         dropController.modalPresentationStyle = .overFullScreen
         dropController.transitioningDelegate = self
 
         parent.present(dropController, animated: true) { [weak dropController] in
-            let time = Int(drop.dismissalDuration * 1000)
+            let time = Int(duration * 1000)
             let deadline: DispatchTime = .now() + .milliseconds(time)
             DispatchQueue.main.asyncAfter(deadline: deadline) {
                 dropController?.dismiss(animated: true)
