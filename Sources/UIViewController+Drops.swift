@@ -26,7 +26,7 @@ import UIKit
 private let sharedPresenter = Presenter()
 
 public extension UIViewController {
-    func present(drop: Drop) {
-        sharedPresenter.present(drop: drop, from: self)
+    func present(drop: Drop, duration: TimeInterval = 2) {
+        sharedPresenter.present(drop: drop, from: self, duration: duration)
     }
 }

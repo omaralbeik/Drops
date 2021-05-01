@@ -9,9 +9,9 @@ A µFramework for showing iOS 13 like alerts
 ## Features / Todos
 
 - [x] Light/dark mode
+- [x] Show with custom duration
 - [ ] Interactive dismissal
 - [ ] Add accessibility
-- [ ] Show with custome duration
 - [ ] Queue multiple drops
 - [ ] Add tests
 

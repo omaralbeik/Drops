@@ -11,6 +11,8 @@ import Drops
 extension Drop {
     static let title = Drop(title: "Hello World!")
 
+    static let titleWithCustomDuration = Drop(title: "Hello World! (Duration 0.2s)")
+
     static let titleSubtitle = Drop(title: "Hello World!", subtitle: "I'm a drop with subtitle")
 
     static let titleSubtitleIcon = Drop(
