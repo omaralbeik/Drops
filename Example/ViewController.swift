@@ -59,7 +59,7 @@ final class ViewController: UIViewController {
 
     private let drops: [(title: String, drop: Drop)] = [
         ("Title", .title),
-        ("Title Dismissal Duration(0.2)", .titleWithCustomDismissalDuration),
+        ("Title + Custom Duration (0.2s)", .titleWithCustomDuration),
         ("Title + subtitle", .titleSubtitle),
         ("Icon + Title + Subtitle", .titleSubtitleIcon),
         ("Title + Action", .titleAction),
@@ -82,8 +82,8 @@ extension ViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let drop = drops[indexPath.row].drop
         switch drop {
-        case .titleWithCustomDismissalDuration:
-            present(drop: drop, duration: .init(0.2))
+        case .titleWithCustomDuration:
+            present(drop: drop, duration: 0.2)
         default:
             present(drop: drop)
         }

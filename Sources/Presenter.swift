@@ -32,8 +32,7 @@ internal final class Presenter: NSObject {
         dropController.transitioningDelegate = self
 
         parent.present(dropController, animated: true) { [weak dropController] in
-            let time = Int(duration * 1000)
-            let deadline: DispatchTime = .now() + .milliseconds(time)
+            let deadline: DispatchTime = .now() + duration
             DispatchQueue.main.asyncAfter(deadline: deadline) {
                 dropController?.dismiss(animated: true)
             }
