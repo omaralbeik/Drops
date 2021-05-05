@@ -31,14 +31,14 @@ public struct Drop {
     ///   - subtitle: Optional subtitle. Defaults to `nil`.
     ///   - icon: Optional icon.
     ///   - action: Optional action.
-    ///   - style: Style. Defaults to `Drop.Style.top`.
+    ///   - position: Position. Defaults to `Drop.Position.top`.
     ///   - duration: Duration. Defaults to `Drop.Duration.recommended`.
     public init(
         title: String,
         subtitle: String? = nil,
         icon: UIImage? = nil,
         action: Action? = nil,
-        style: Style = .top,
+        position: Position = .top,
         duration: Duration = .recommended
     ) {
         self.title = title.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -47,7 +47,7 @@ public struct Drop {
         }
         self.icon = icon
         self.action = action
-        self.style = style
+        self.position = position
         self.duration = duration
     }
 
@@ -63,16 +63,16 @@ public struct Drop {
     /// Action.
     public var action: Action?
 
-    /// Style.
-    public var style: Style
+    /// Position.
+    public var position: Position
 
     /// Duration.
     public var duration: Duration
 }
 
 extension Drop {
-    /// An enum representing drop presentation style.
-    public enum Style {
+    /// An enum representing drop presentation position.
+    public enum Position: Equatable {
         /// Drop is presented from top.
         case top
         /// Drop is presented from bottom.
@@ -82,7 +82,7 @@ extension Drop {
 
 extension Drop {
     /// An enum representing a drop duration on screen.
-    public enum Duration {
+    public enum Duration: Equatable {
         /// Hides the drop after 2.0 seconds.
         case recommended
         /// Hides the drop after the specified number of seconds.

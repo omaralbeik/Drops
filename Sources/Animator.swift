@@ -30,14 +30,14 @@ protocol AnimatorDelegate: AnyObject {
 }
 
 final class Animator {
-    init(style: Drop.Style, delegate: AnimatorDelegate) {
-        self.style = style
+    init(position: Drop.Position, delegate: AnimatorDelegate) {
+        self.position = position
         self.delegate = delegate
     }
 
     weak var delegate: AnimatorDelegate?
 
-    private let style: Drop.Style
+    private let position: Drop.Position
 
     private var showDuration: TimeInterval = 0.75
     private var hideDuration: TimeInterval = 0.25
@@ -65,10 +65,10 @@ final class Animator {
             delay: 0,
             options: [.beginFromCurrentState, .curveEaseIn],
             animations: { [weak self] in
-                guard let style = self?.style else { return }
+                guard let position = self?.position else { return }
                 let view = context.view
                 view.alpha = 0
-                switch style {
+                switch position {
                 case .top:
                     view.transform = CGAffineTransform(translationX: 0, y: -view.frame.height)
                 case .bottom:
@@ -121,7 +121,7 @@ final class Animator {
             view.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor, constant: -20)
         ]
 
-        switch style {
+        switch position {
         case .top:
             constraints += [
                 view.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: bounceOffset)
@@ -137,7 +137,7 @@ final class Animator {
 
         let animationDistance = view.frame.height
 
-        switch style {
+        switch position {
         case .top:
             view.transform = CGAffineTransform(translationX: 0, y: -animationDistance)
         case .bottom:
@@ -172,7 +172,7 @@ final class Animator {
         if height <= 0 { return }
         var velocity = recognizer.velocity(in: view)
         var translation = recognizer.translation(in: view)
-        if case .top = style {
+        if case .top = position {
             velocity.y *= -1.0
             translation.y *= -1.0
         }
@@ -183,7 +183,7 @@ final class Animator {
             delegate?.panStarted(animator: self)
         }
         if !rubberBanding && translationAmount < 0 { translationAmount = 0 }
-        switch style {
+        switch position {
         case .top:
             view.transform = CGAffineTransform(translationX: 0, y: -translationAmount)
         case .bottom:

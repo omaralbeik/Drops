@@ -26,7 +26,7 @@
     <nav>
         <div class="wrapper">
             <h2>On This Page</h2>
-            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Nested Types</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#drop.init(title:subtitle:icon:action:style:duration:)">init(title:​subtitle:​icon:​action:​style:​duration:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#drop.title">title</a></li><li class="variable"><a href="#drop.subtitle">subtitle</a></li><li class="variable"><a href="#drop.icon">icon</a></li><li class="variable"><a href="#drop.action">action</a></li><li class="variable"><a href="#drop.style">style</a></li><li class="variable"><a href="#drop.duration">duration</a></li></ul></li></ol>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Nested Types</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#drop.init(title:subtitle:icon:action:position:duration:)">init(title:​subtitle:​icon:​action:​position:​duration:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#drop.title">title</a></li><li class="variable"><a href="#drop.subtitle">subtitle</a></li><li class="variable"><a href="#drop.icon">icon</a></li><li class="variable"><a href="#drop.action">action</a></li><li class="variable"><a href="#drop.position">position</a></li><li class="variable"><a href="#drop.duration">duration</a></li></ul></li></ol>
         </div>
     </nav>
 
@@ -49,8 +49,8 @@
         
         <h3>Nested Types</h3>
 <dl>
-    <dt class="enumeration"><code><a href="https://omaralbeik.github.io/drops/Drop_Style">Drop.Style</a></code></dt>
-<dd><p>An enum representing drop presentation style.</p>
+    <dt class="enumeration"><code><a href="https://omaralbeik.github.io/drops/Drop_Position">Drop.Position</a></code></dt>
+<dd><p>An enum representing drop presentation position.</p>
 </dd>
 <dt class="enumeration"><code><a href="https://omaralbeik.github.io/drops/Drop_Duration">Drop.Duration</a></code></dt>
 <dd><p>An enum representing a drop duration on screen.</p>
@@ -63,9 +63,9 @@
     <section id="initializers">
         <h2>Initializers</h2>
 
-        <div role="article" class="initializer" id="drop.init(title:subtitle:icon:action:style:duration:)">
+        <div role="article" class="initializer" id="drop.init(title:subtitle:icon:action:position:duration:)">
     <h3>
-        <code>init(title:​subtitle:​icon:​action:​style:​duration:​)</code>
+        <code>init(title:​subtitle:​icon:​action:​position:​duration:​)</code>
     </h3>
     <div class="declaration">
 <pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(
@@ -73,7 +73,7 @@
         <span class="variable">subtitle</span>: <span class="type">String</span>? = <span class="keyword">nil</span>,
         <span class="variable">icon</span>: <span class="type">UIImage</span>? = <span class="keyword">nil</span>,
         <span class="variable">action</span>: <span class="type">Action</span>? = <span class="keyword">nil</span>,
-        <span class="variable">style</span>: <span class="type">Style</span> = .<span class="variable">top</span>,
+        <span class="variable">position</span>: <span class="type">Position</span> = .<span class="variable">top</span>,
         <span class="variable">duration</span>: <span class="type">Duration</span> = .<span class="variable">recommended</span>
     ) </code></pre>
 </div>
@@ -117,9 +117,9 @@
 </td>
 </tr>
 <tr>
-    <th>style</th>
-    <td><code class="type">Style</code></td>
-    <td><p>Style. Defaults to <code>Drop.Style.top</code>.</p>
+    <th>position</th>
+    <td><code class="type">Position</code></td>
+    <td><p>Position. Defaults to <code>Drop.Position.top</code>.</p>
 </td>
 </tr>
 <tr>
@@ -183,15 +183,15 @@
 
 </div>
 </div>
-<div role="article" class="variable" id="drop.style">
+<div role="article" class="variable" id="drop.position">
     <h3>
-        <code>style</code>
+        <code>position</code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">style</span>: <span class="type">Style</span></code></pre>
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">position</span>: <span class="type">Position</span></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
-    <p>Style.</p>
+    <p>Position.</p>
 
 </div>
 </div>
@@ -216,7 +216,7 @@
 
     <footer>
         <p>
-    Generated on <time datetime="2021-05-05T04:43:46+0200">5 May 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.6</span>.
+    Generated on <time datetime="2021-05-05T04:56:12+0200">5 May 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.6</span>.
 </p>
     </footer>
 </body>

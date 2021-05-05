@@ -83,15 +83,15 @@ final class ViewController: UIViewController {
         return field
     }()
 
-    private lazy var styleLabel: UILabel = {
+    private lazy var positionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Style"
+        label.text = "Position"
         label.font = .preferredFont(forTextStyle: .caption1)
         return label
     }()
 
-    private lazy var styleSegmentedControl: UISegmentedControl = {
+    private lazy var positionSegmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["Top", "Bottom"])
         control.translatesAutoresizingMaskIntoConstraints = false
         control.selectedSegmentIndex = 0
@@ -150,7 +150,7 @@ final class ViewController: UIViewController {
             subtitleLabel, subtitleTextField,
             iconLabel, iconSwitch,
             buttonLabel, buttonSwitch,
-            styleLabel, styleSegmentedControl,
+            positionLabel, positionSegmentedControl,
             durationLabel, durationSlider
         ]
 
@@ -164,7 +164,7 @@ final class ViewController: UIViewController {
         view.setCustomSpacing(20, after: subtitleTextField)
         view.setCustomSpacing(20, after: iconSwitch)
         view.setCustomSpacing(20, after: buttonSwitch)
-        view.setCustomSpacing(20, after: styleSegmentedControl)
+        view.setCustomSpacing(20, after: positionSegmentedControl)
         return view
     }()
 
@@ -186,7 +186,7 @@ final class ViewController: UIViewController {
 
         let title = titleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let subtitle = subtitleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let style: Drop.Style = styleSegmentedControl.selectedSegmentIndex == 0 ? .top : .bottom
+        let position: Drop.Position = positionSegmentedControl.selectedSegmentIndex == 0 ? .top : .bottom
         let duration = Double(durationSlider.value)
 
         let icon = iconSwitch.isOn ? UIImage(systemName: "star.fill") : nil
@@ -200,7 +200,7 @@ final class ViewController: UIViewController {
                 print("Drop tapped")
                 Drops.hideCurrent()
             }),
-            style: style,
+            position: position,
             duration: .seconds(duration)
         )
         Drops.show(drop)
