@@ -25,58 +25,96 @@ import UIKit
 
 /// An object representing a drop.
 public struct Drop {
+    /// Create a new drop.
+    /// - Parameters:
+    ///   - title: Title.
+    ///   - subtitle: Optional subtitle. Defaults to `nil`.
+    ///   - icon: Optional icon.
+    ///   - action: Optional action.
+    ///   - style: Style. Defaults to `Drop.Style.top`.
+    ///   - duration: Duration. Defaults to `Drop.Duration.recommended`.
+    public init(
+        title: String,
+        subtitle: String? = nil,
+        icon: UIImage? = nil,
+        action: Action? = nil,
+        style: Style = .top,
+        duration: Duration = .recommended
+    ) {
+        self.title = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        if let subtitle = subtitle?.trimmingCharacters(in: .whitespacesAndNewlines), !subtitle.isEmpty {
+            self.subtitle = subtitle
+        }
+        self.icon = icon
+        self.action = action
+        self.style = style
+        self.duration = duration
+    }
+
+    /// Title.
+    public var title: String
+
+    /// Subtitle.
+    public var subtitle: String?
+
+    /// Icon.
+    public var icon: UIImage?
+
+    /// Action.
+    public var action: Action?
+
+    /// Style.
+    public var style: Style
+
+    /// Duration.
+    public var duration: Duration
+}
+
+extension Drop {
+    /// An enum representing drop presentation style.
+    public enum Style {
+        /// Drop is presented from top.
+        case top
+        /// Drop is presented from bottom.
+        case bottom
+    }
+}
+
+extension Drop {
+    /// An enum representing a drop duration on screen.
+    public enum Duration {
+        /// Hides the drop after 2.0 seconds.
+        case recommended
+        /// Hides the drop after the specified number of seconds.
+        case seconds(TimeInterval)
+
+        internal var value: TimeInterval {
+            switch self {
+            case .recommended:
+                return 2.0
+            case .seconds(let custom):
+                return custom
+            }
+        }
+    }
+}
+
+extension Drop {
     /// An object representing a drop action.
     public struct Action {
         /// Create a new action.
         /// - Parameters:
-        ///   - icon: optional icon image.
-        ///   - handler: handler to be called when the drop is tapped.
+        ///   - icon: Optional icon image.
+        ///   - handler: Handler to be called when the drop is tapped.
         public init(icon: UIImage? = nil, handler: @escaping () -> Void) {
             self.icon = icon
             self.handler = handler
         }
 
-        internal let icon: UIImage?
-        internal let handler: () -> Void
-    }
+        /// Icon.
+        public var icon: UIImage?
 
-    /// Create a new drop.
-    /// - Parameters:
-    ///   - title: Title.
-    ///   - subtitle: Optional subtitle. Default to `nil`.
-    ///   - icon: Optional icon.
-    ///   - action: Optional action.
-    public init(
-        title: String,
-        subtitle: String? = nil,
-        icon: UIImage? = nil,
-        action: Action? = nil
-    ) {
-        self.title = title
-        self.subtitle = subtitle
-        self.icon = icon
-        self.action = action
-    }
-
-    public let title: String
-    public let subtitle: String?
-    public let icon: UIImage?
-    public let action: Action?
-}
-
-// MARK: - Equatable Functions
-extension Drop: Equatable {
-    public static func == (lhs: Drop, rhs: Drop) -> Bool {
-        return lhs.title == rhs.title
-            && lhs.subtitle == rhs.subtitle
-            && lhs.icon == rhs.icon
-            && lhs.action == rhs.action
-    }
-}
-
-extension Drop.Action: Equatable {
-    public static func == (lhs: Drop.Action, rhs: Drop.Action) -> Bool {
-        return lhs.icon == rhs.icon
-            && lhs.handler() == rhs.handler()
+        /// Handler.
+        public var handler: () -> Void
     }
 }

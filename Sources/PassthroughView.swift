@@ -23,26 +23,9 @@
 
 import UIKit
 
-internal final class PassthroughView: UIControl {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addTarget(self, action: #selector(tapped), for: .touchUpInside)
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
-
+final class PassthroughView: UIView {
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let view = super.hitTest(point, with: event)
-        return view == self && tappedHander == nil ? nil : view
-    }
-
-    var tappedHander: (() -> Void)?
-
-    @objc
-    private func tapped() {
-        tappedHander?()
+        return view == self ? nil : view
     }
 }

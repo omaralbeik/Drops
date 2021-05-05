@@ -23,37 +23,63 @@
 
 import UIKit
 
-internal final class Presenter: NSObject {
-    let transition = Transition()
+final class Presenter: NSObject {
+    init(drop: Drop, delegate: AnimatorDelegate) {
+        self.drop = drop
+        self.view = DropView(drop: drop)
+        self.viewController = .init(value: WindowViewController())
+        self.animator = Animator(style: drop.style, delegate: delegate)
+        self.context = AnimationContext(view: view, container: maskingView)
+    }
 
-    func present(drop: Drop, from parent: UIViewController, duration: TimeInterval) {
-        let dropController = DropViewController(drop: drop)
-        dropController.modalPresentationStyle = .overFullScreen
-        dropController.transitioningDelegate = self
+    let drop: Drop
+    let animator: Animator
+    var isHiding = false
 
-        parent.present(dropController, animated: true) { [weak dropController] in
-            let deadline: DispatchTime = .now() + duration
-            DispatchQueue.main.asyncAfter(deadline: deadline) {
-                dropController?.dismiss(animated: true)
-            }
+    func show(completion: @escaping AnimationCompletion) {
+        install()
+        animator.show(context: context) { (completed) in
+            completion(completed)
         }
     }
-}
 
-extension Presenter: UIViewControllerTransitioningDelegate {
-    func animationController(
-        forPresented presented: UIViewController,
-        presenting: UIViewController,
-        source: UIViewController
-    ) -> UIViewControllerAnimatedTransitioning? {
-        transition.operation = .present
-        return transition
+    func hide(animated: Bool, completion: @escaping AnimationCompletion) {
+        isHiding = true
+        let action = { [weak self] in
+            self?.viewController.value?.uninstall()
+            self?.maskingView.removeFromSuperview()
+            completion(true)
+        }
+        guard animated else {
+            action()
+            return
+        }
+        animator.hide(context: context) { _ in
+            action()
+        }
     }
 
-    func animationController(
-        forDismissed dismissed: UIViewController
-    ) -> UIViewControllerAnimatedTransitioning? {
-        transition.operation = .dismiss
-        return transition
+    private let maskingView = PassthroughView()
+    private let view: UIView
+    private let viewController: Weak<WindowViewController>
+    private let context: AnimationContext
+
+    private func install() {
+        guard let container = viewController.value else { return }
+        guard let containerView = container.view else { return }
+
+        container.install()
+
+        maskingView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(maskingView)
+
+        NSLayoutConstraint.activate([
+            maskingView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            maskingView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            maskingView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            maskingView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+        ])
+
+        containerView.layoutIfNeeded()
     }
 }

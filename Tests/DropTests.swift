@@ -33,6 +33,7 @@ final class DropTests: XCTestCase {
         XCTAssertNil(drop.action)
     }
 
+    @available(iOS 13.0, *)
     func testInitializer() {
         let icon = UIImage(systemName: "drop")
         let dismissIcon = UIImage(systemName: "xmark")

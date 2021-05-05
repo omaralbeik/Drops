@@ -23,20 +23,24 @@
 
 import UIKit
 
-@main
-final class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
-
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
-    ) -> Bool {
-
-        let window = UIWindow()
-        window.rootViewController = ViewController()
-        window.makeKeyAndVisible()
-        self.window = window
-
-        return true
+final class PassthroughWindow: UIWindow {
+    init(hitTestView: UIView) {
+        self.hitTestView = hitTestView
+        super.init(frame: .zero)
     }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let view = super.hitTest(point, with: event)
+        if let view = view, let hitTestView = hitTestView, hitTestView.isDescendant(of: view) && hitTestView != view {
+            return nil
+        }
+        return view
+    }
+
+    private weak var hitTestView: UIView?
 }

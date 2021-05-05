@@ -1,6 +1,6 @@
-# Drops
+# Drops 💧
 
-A µFramework for showing iOS 13 like alerts
+A µFramework for showing iOS 13 like alerts.
 
 ![Demo](Assets/demo.gif)
 
@@ -8,12 +8,17 @@ A µFramework for showing iOS 13 like alerts
 
 ## Features / Todos
 
+- [x] iOS 11+
 - [x] Light/dark mode
 - [x] Show with custom duration
-- [ ] Interactive dismissal
-- [ ] Add accessibility
-- [ ] Queue multiple drops
+- [x] Show from top or buttom of screen
+- [x] Interactive dismissal
+- [x] Queue multiple drops
+- [ ] VoiceOver support
+- [ ] Accessibility checkup
+- [ ] SwiftUI support
 - [ ] Add tests
+- [ ] Add basic CI with Github Actions
 
 ---
 
@@ -25,11 +30,19 @@ A µFramework for showing iOS 13 like alerts
 let drop = Drop(title: "Title", subtitle: "Subtitle")
 ```
 
-2. Present it from a view controller:
+2. Present it:
 
 ```swift
-present(drop: drop)
+Drops.show(drop)
 ```
+
+---
+
+## Example Project
+
+Clone the repo and run the `Example` target
+
+![Example](Assets/example.png)
 
 ---
 
@@ -43,7 +56,7 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a tool for ma
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/omaralbeik/drops.git", from: "0.1.0")
+    .package(url: "https://github.com/omaralbeik/drops.git", from: "0.2.0")
 ]
 ```
 
@@ -52,6 +65,12 @@ dependencies: [
 ```sh
 $ swift build
 ```
+
+---
+
+## Thanks
+
+Special thanks to [SwiftKickMobile team](https://github.com/SwiftKickMobile) for creating [SwiftMessages](https://github.com/SwiftKickMobile/SwiftMessages), this project was heavily inspired by their work.
 
 ---
 

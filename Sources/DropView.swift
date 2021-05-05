@@ -28,7 +28,12 @@ internal final class DropView: UIView {
         self.drop = drop
         super.init(frame: .zero)
 
-        backgroundColor = .secondarySystemBackground
+        if #available(iOS 13.0, *) {
+            backgroundColor = .secondarySystemBackground
+        } else {
+            backgroundColor = .white
+        }
+
         addSubview(stackView)
 
         let constraints = createLayoutConstraints(for: drop)
@@ -42,11 +47,11 @@ internal final class DropView: UIView {
     }
 
     override var frame: CGRect {
-        didSet { layer.cornerRadius = cornerRadius(for: frame) }
+        didSet { layer.cornerRadius = frame.cornerRadius }
     }
 
     override var bounds: CGRect {
-        didSet { layer.cornerRadius = cornerRadius(for: frame) }
+        didSet { layer.cornerRadius = frame.cornerRadius }
     }
 
     let drop: Drop
@@ -74,23 +79,24 @@ internal final class DropView: UIView {
             insets.right = 40
         }
 
-        if drop.subtitle == nil && (drop.icon == nil || drop.action?.icon == nil) {
-            insets.top = 12.5
-            insets.bottom = 12.5
+        if drop.subtitle == nil {
+            insets.top = 15
+            insets.bottom = 15
+            if drop.action?.icon != nil {
+                insets.top = 10
+                insets.bottom = 10
+                insets.right = 10
+            }
         }
 
         if drop.icon == nil && drop.action?.icon == nil {
             insets.left = 50
             insets.right = 50
-            if drop.subtitle == nil {
-                insets.top = 12.5
-                insets.bottom = 12.5
-            }
         }
 
         constraints += [
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: insets.left),
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: insets.top),
+            stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: insets.top),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -insets.right),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -insets.bottom)
         ]
@@ -106,11 +112,9 @@ internal final class DropView: UIView {
         subtitleLabel.text = drop.subtitle
         subtitleLabel.isHidden = drop.subtitle == nil
 
-        imageView.layer.cornerRadius = 12.5
         imageView.image = drop.icon
         imageView.isHidden = drop.icon == nil
 
-        button.layer.cornerRadius = 17.5
         button.setImage(drop.action?.icon, for: .normal)
         button.isHidden = drop.action?.icon == nil
 
@@ -118,6 +122,14 @@ internal final class DropView: UIView {
             let tap = UITapGestureRecognizer(target: self, action: #selector(didTapButton))
             addGestureRecognizer(tap)
         }
+
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = .zero
+        layer.shadowRadius = 25
+        layer.shadowOpacity = 0.2
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+        layer.masksToBounds = false
     }
 
     @objc
@@ -130,8 +142,12 @@ internal final class DropView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.textAlignment = .center
-        label.textColor = .label
-        label.font = bold(for: .preferredFont(forTextStyle: .subheadline))
+        if #available(iOS 13.0, *) {
+            label.textColor = .label
+        } else {
+            label.textColor = .black
+        }
+        label.font = .preferredFont(forTextStyle: .subheadline).bold
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
@@ -141,27 +157,39 @@ internal final class DropView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.textAlignment = .center
-        label.textColor = .secondaryLabel
+        if #available(iOS 13.0, *) {
+            label.textColor = .secondaryLabel
+        } else {
+            label.textColor = .darkGray
+        }
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
     lazy var imageView: UIImageView = {
-        let view = UIImageView()
+        let view = RoundImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentMode = .scaleAspectFit
         view.clipsToBounds = true
-        view.tintColor = .secondaryLabel
+        if #available(iOS 13.0, *) {
+            view.tintColor = .secondaryLabel
+        } else {
+            view.tintColor = .darkGray
+        }
         return view
     }()
 
     lazy var button: UIButton = {
-        let button = UIButton(type: .system)
+        let button = RoundButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         button.clipsToBounds = true
-        button.backgroundColor = .link
+        if #available(iOS 13.0, *) {
+            button.backgroundColor = .link
+        } else {
+            button.backgroundColor = .blue
+        }
         button.tintColor = .white
         button.imageView?.contentMode = .scaleAspectFit
         button.contentEdgeInsets = .init(top: 7.5, left: 7.5, bottom: 7.5, right: 7.5)
@@ -174,6 +202,7 @@ internal final class DropView: UIView {
         view.axis = .vertical
         view.alignment = .fill
         view.distribution = .fill
+        view.spacing = -2.5
         return view
     }()
 
@@ -190,13 +219,29 @@ internal final class DropView: UIView {
         }
         return view
     }()
+}
 
-    func bold(for font: UIFont) -> UIFont {
-        guard let descriptor = font.fontDescriptor.withSymbolicTraits(.traitBold) else { return font }
-        return UIFont(descriptor: descriptor, size: font.pointSize)
+private final class RoundButton: UIButton {
+    override var bounds: CGRect {
+        didSet { layer.cornerRadius = frame.cornerRadius }
     }
+}
 
-    func cornerRadius(for rect: CGRect) -> CGFloat {
-        return min(rect.width, rect.height) / 2
+private final class RoundImageView: UIImageView {
+    override var bounds: CGRect {
+        didSet { layer.cornerRadius = frame.cornerRadius }
+    }
+}
+
+private extension UIFont {
+    var bold: UIFont {
+        guard let descriptor = fontDescriptor.withSymbolicTraits(.traitBold) else { return self }
+        return UIFont(descriptor: descriptor, size: pointSize)
+    }
+}
+
+private extension CGRect {
+    var cornerRadius: CGFloat {
+        return min(width, height) / 2
     }
 }

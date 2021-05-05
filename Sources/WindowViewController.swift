@@ -23,10 +23,35 @@
 
 import UIKit
 
-private let sharedPresenter = Presenter()
-
-public extension UIViewController {
-    func present(drop: Drop, duration: TimeInterval = 2) {
-        sharedPresenter.present(drop: drop, from: self, duration: duration)
+final class WindowViewController: UIViewController {
+    init() {
+        let view = PassthroughView()
+        let window = PassthroughWindow(hitTestView: view)
+        self.window = window
+        super.init(nibName: nil, bundle: nil)
+        self.view = view
+        window.rootViewController = self
     }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+
+    func install() {
+        guard let window = window else { return }
+        window.frame = UIScreen.main.bounds
+        window.isHidden = false
+    }
+
+    func uninstall() {
+        guard let window = window else { return }
+        window.isHidden = true
+        if #available(iOS 13, *) {
+            window.windowScene = nil
+        }
+        self.window = nil
+    }
+
+    private var window: UIWindow?
 }
