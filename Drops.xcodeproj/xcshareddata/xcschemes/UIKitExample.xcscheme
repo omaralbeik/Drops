@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "07D8149626361DE8003F51DB"
-               BuildableName = "Example.app"
-               BlueprintName = "Example"
+               BlueprintIdentifier = "074941E92642CCD20031D338"
+               BuildableName = "UIKitExample.app"
+               BlueprintName = "UIKitExample"
                ReferencedContainer = "container:Drops.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07D8149626361DE8003F51DB"
-            BuildableName = "Example.app"
-            BlueprintName = "Example"
+            BlueprintIdentifier = "074941E92642CCD20031D338"
+            BuildableName = "UIKitExample.app"
+            BlueprintName = "UIKitExample"
             ReferencedContainer = "container:Drops.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "07D8149626361DE8003F51DB"
-            BuildableName = "Example.app"
-            BlueprintName = "Example"
+            BlueprintIdentifier = "074941E92642CCD20031D338"
+            BuildableName = "UIKitExample.app"
+            BlueprintName = "UIKitExample"
             ReferencedContainer = "container:Drops.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -23,39 +23,18 @@
 
 import UIKit
 
-final class WindowViewController: UIViewController {
-    init() {
-        let view = PassthroughView()
-        let window = PassthroughWindow(hitTestView: view)
-        self.window = window
-        super.init(nibName: nil, bundle: nil)
-        self.view = view
-        window.rootViewController = self
-    }
-
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
-
-    func install() {
-        window?.frame = UIScreen.main.bounds
-        window?.isHidden = false
-        if #available(iOS 13, *) {
-            let activeScene = UIApplication.shared.connectedScenes
-                .compactMap { $0 as? UIWindowScene }
-                .first { $0.activationState == .foregroundActive }
-            window?.windowScene = activeScene
-        }
-    }
-
-    func uninstall() {
-        window?.isHidden = true
-        if #available(iOS 13, *) {
-            window?.windowScene = nil
-        }
-        window = nil
-    }
-
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
+        guard let scene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: scene)
+        window.rootViewController = ViewController()
+        window.makeKeyAndVisible()
+        self.window = window
+    }
 }
