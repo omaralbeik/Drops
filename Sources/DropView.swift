@@ -126,7 +126,7 @@ internal final class DropView: UIView {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = .zero
         layer.shadowRadius = 25
-        layer.shadowOpacity = 0.2
+        layer.shadowOpacity = 0.1
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
         layer.masksToBounds = false

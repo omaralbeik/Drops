@@ -13,6 +13,7 @@ A µFramework for showing iOS 13 like alerts.
 ## Features / Todos
 
 - [x] iOS 11+
+- [x] UIKit/SwiftUI support
 - [x] Light/dark mode
 - [x] Show with custom duration
 - [x] Show from top or buttom of screen
@@ -21,7 +22,6 @@ A µFramework for showing iOS 13 like alerts.
 - [x] Add basic CI with Github Actions
 - [ ] VoiceOver support
 - [ ] Accessibility checkup
-- [ ] SwiftUI support
 - [ ] Add more tests
 
 ---
@@ -44,9 +44,10 @@ Read the [docs](https://omaralbeik.github.io/Drops) for more usage options.
 
 ---
 
-## Example Project
+## Example Projects
 
-Clone the repo and run the `Example` target
+- Run the `SwiftUIExample` target to see how Drops works in SwiftUI applications.
+- Run the `UIKitExample` target to see how Drops works in UIKit applications.
 
 ![Example](Assets/example.png)
 
@@ -62,7 +63,7 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a tool for ma
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/omaralbeik/Drops.git", from: "0.4.0")
+    .package(url: "https://github.com/omaralbeik/Drops.git", from: "0.5.0")
 ]
 ```
 
