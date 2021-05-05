@@ -202,7 +202,7 @@ internal final class DropView: UIView {
         view.axis = .vertical
         view.alignment = .fill
         view.distribution = .fill
-        view.spacing = -2.5
+        view.spacing = -1
         return view
     }()
 
@@ -221,26 +221,26 @@ internal final class DropView: UIView {
     }()
 }
 
-private final class RoundButton: UIButton {
+final class RoundButton: UIButton {
     override var bounds: CGRect {
         didSet { layer.cornerRadius = frame.cornerRadius }
     }
 }
 
-private final class RoundImageView: UIImageView {
+final class RoundImageView: UIImageView {
     override var bounds: CGRect {
         didSet { layer.cornerRadius = frame.cornerRadius }
     }
 }
 
-private extension UIFont {
+extension UIFont {
     var bold: UIFont {
         guard let descriptor = fontDescriptor.withSymbolicTraits(.traitBold) else { return self }
         return UIFont(descriptor: descriptor, size: pointSize)
     }
 }
 
-private extension CGRect {
+extension CGRect {
     var cornerRadius: CGFloat {
         return min(width, height) / 2
     }

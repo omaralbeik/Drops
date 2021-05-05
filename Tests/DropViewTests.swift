@@ -123,6 +123,25 @@ final class DropViewTests: XCTestCase {
         let drop = Drop(title: "Title")
         let view = DropView(drop: drop)
         view.bounds = .init(x: 0, y: 0, width: 300, height: 100)
+
+        let imageView = RoundImageView()
+        imageView.bounds = .init(x: 0, y: 0, width: 40, height: 40)
+        XCTAssertEqual(imageView.layer.cornerRadius, 20)
+
+        let button = RoundButton()
+        button.bounds = .init(x: 0, y: 0, width: 40, height: 40)
+        XCTAssertEqual(button.layer.cornerRadius, 20)
+    }
+
+    func testStackViewSpacing() {
+        let drop1 = Drop(title: "Title")
+        let view1 = DropView(drop: drop1)
+        XCTAssertEqual(view1.stackView.spacing, 15)
+
+        let drop2 = Drop(title: "Title", icon: UIImage(), action: .init(icon: UIImage(), handler: {}))
+        let view2 = DropView(drop: drop2)
+        XCTAssertEqual(view2.stackView.spacing, 20)
+
     }
 }
 

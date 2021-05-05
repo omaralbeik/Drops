@@ -26,6 +26,7 @@
 		0785D3A72642439C004D6171 /* PassthroughViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3A526424397004D6171 /* PassthroughViewTests.swift */; };
 		0785D3A9264244D5004D6171 /* DropViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3A8264244D5004D6171 /* DropViewTests.swift */; };
 		0785D3AB26424A0C004D6171 /* WindowViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3AA26424A0C004D6171 /* WindowViewControllerTests.swift */; };
+		0785D3AD26424DD2004D6171 /* PassthroughWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3AC26424DD2004D6171 /* PassthroughWindowTests.swift */; };
 		07D8147726361DB7003F51DB /* Drops.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D8146D26361DB7003F51DB /* Drops.framework */; };
 		07D814A326361DE9003F51DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D814A226361DE9003F51DB /* Assets.xcassets */; };
 		07D814A626361DE9003F51DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D814A426361DE9003F51DB /* LaunchScreen.storyboard */; };
@@ -77,6 +78,7 @@
 		0785D3A526424397004D6171 /* PassthroughViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughViewTests.swift; sourceTree = "<group>"; };
 		0785D3A8264244D5004D6171 /* DropViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewTests.swift; sourceTree = "<group>"; };
 		0785D3AA26424A0C004D6171 /* WindowViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowViewControllerTests.swift; sourceTree = "<group>"; };
+		0785D3AC26424DD2004D6171 /* PassthroughWindowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughWindowTests.swift; sourceTree = "<group>"; };
 		07D8146D26361DB7003F51DB /* Drops.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Drops.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D8147126361DB7003F51DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07D8147626361DB7003F51DB /* DropsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DropsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +174,7 @@
 				0785D3AA26424A0C004D6171 /* WindowViewControllerTests.swift */,
 				0785D3A526424397004D6171 /* PassthroughViewTests.swift */,
 				0785D3A8264244D5004D6171 /* DropViewTests.swift */,
+				0785D3AC26424DD2004D6171 /* PassthroughWindowTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				0785D3A9264244D5004D6171 /* DropViewTests.swift in Sources */,
 				0755C206263B5EFA002209FD /* DropTests.swift in Sources */,
 				0785D3AB26424A0C004D6171 /* WindowViewControllerTests.swift in Sources */,
+				0785D3AD26424DD2004D6171 /* PassthroughWindowTests.swift in Sources */,
 				0785D3A4264242AE004D6171 /* WeakTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
