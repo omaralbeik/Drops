@@ -27,7 +27,7 @@ typealias AnimationCompletion = (_ completed: Bool) -> Void
 
 private let sharedInstance = Drops()
 
-/// Drops.
+/// A shared class used to show and hide drops.
 public final class Drops {
     private func show(drop: Drop) {
         let presenter = Presenter(drop: drop, delegate: self)

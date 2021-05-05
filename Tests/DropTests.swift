@@ -31,6 +31,8 @@ final class DropTests: XCTestCase {
         XCTAssertNil(drop.subtitle)
         XCTAssertNil(drop.icon)
         XCTAssertNil(drop.action)
+        XCTAssertEqual(drop.position, .top)
+        XCTAssertEqual(drop.duration, .recommended)
     }
 
     @available(iOS 13.0, *)
@@ -38,10 +40,24 @@ final class DropTests: XCTestCase {
         let icon = UIImage(systemName: "drop")
         let dismissIcon = UIImage(systemName: "xmark")
         let action = Drop.Action(icon: dismissIcon) { }
-        let drop = Drop(title: "Hello world", subtitle: "I'm a drop!", icon: icon, action: action)
+        let drop = Drop(
+            title: "Hello world",
+            subtitle: "I'm a drop!",
+            icon: icon,
+            action: action,
+            position: .bottom,
+            duration: .seconds(1)
+        )
         XCTAssertEqual(drop.title, "Hello world")
         XCTAssertEqual(drop.subtitle, "I'm a drop!")
         XCTAssertEqual(drop.icon, icon)
         XCTAssertEqual(drop.action?.icon, dismissIcon)
+        XCTAssertEqual(drop.position, .bottom)
+        XCTAssertEqual(drop.duration, .seconds(1))
+    }
+
+    func testDurationValue() {
+        XCTAssertEqual(Drop.Duration.recommended.value, 2)
+        XCTAssertEqual(Drop.Duration.seconds(1).value, 1)
     }
 }

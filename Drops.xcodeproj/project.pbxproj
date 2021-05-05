@@ -22,6 +22,10 @@
 		0785D38A26416EF3004D6171 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D37B26416DB3004D6171 /* Weak.swift */; };
 		0785D38B26416EF3004D6171 /* Drops.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3732640BBF7004D6171 /* Drops.swift */; };
 		0785D38D2641F487004D6171 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D38C2641F487004D6171 /* Presenter.swift */; };
+		0785D3A4264242AE004D6171 /* WeakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3A12642429A004D6171 /* WeakTests.swift */; };
+		0785D3A72642439C004D6171 /* PassthroughViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3A526424397004D6171 /* PassthroughViewTests.swift */; };
+		0785D3A9264244D5004D6171 /* DropViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3A8264244D5004D6171 /* DropViewTests.swift */; };
+		0785D3AB26424A0C004D6171 /* WindowViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3AA26424A0C004D6171 /* WindowViewControllerTests.swift */; };
 		07D8147726361DB7003F51DB /* Drops.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D8146D26361DB7003F51DB /* Drops.framework */; };
 		07D814A326361DE9003F51DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07D814A226361DE9003F51DB /* Assets.xcassets */; };
 		07D814A626361DE9003F51DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D814A426361DE9003F51DB /* LaunchScreen.storyboard */; };
@@ -69,6 +73,10 @@
 		0785D37F26416E0E004D6171 /* AnimationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationContext.swift; sourceTree = "<group>"; };
 		0785D38126416E3A004D6171 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		0785D38C2641F487004D6171 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		0785D3A12642429A004D6171 /* WeakTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakTests.swift; sourceTree = "<group>"; };
+		0785D3A526424397004D6171 /* PassthroughViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughViewTests.swift; sourceTree = "<group>"; };
+		0785D3A8264244D5004D6171 /* DropViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewTests.swift; sourceTree = "<group>"; };
+		0785D3AA26424A0C004D6171 /* WindowViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowViewControllerTests.swift; sourceTree = "<group>"; };
 		07D8146D26361DB7003F51DB /* Drops.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Drops.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D8147126361DB7003F51DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07D8147626361DB7003F51DB /* DropsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DropsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +168,10 @@
 			children = (
 				07D8147D26361DB7003F51DB /* Info.plist */,
 				0755C205263B5EFA002209FD /* DropTests.swift */,
+				0785D3A12642429A004D6171 /* WeakTests.swift */,
+				0785D3AA26424A0C004D6171 /* WindowViewControllerTests.swift */,
+				0785D3A526424397004D6171 /* PassthroughViewTests.swift */,
+				0785D3A8264244D5004D6171 /* DropViewTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -355,7 +367,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0785D3A72642439C004D6171 /* PassthroughViewTests.swift in Sources */,
+				0785D3A9264244D5004D6171 /* DropViewTests.swift in Sources */,
 				0755C206263B5EFA002209FD /* DropTests.swift in Sources */,
+				0785D3AB26424A0C004D6171 /* WindowViewControllerTests.swift in Sources */,
+				0785D3A4264242AE004D6171 /* WeakTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

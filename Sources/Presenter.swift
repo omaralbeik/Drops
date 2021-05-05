@@ -28,7 +28,7 @@ final class Presenter: NSObject {
         self.drop = drop
         self.view = DropView(drop: drop)
         self.viewController = .init(value: WindowViewController())
-        self.animator = Animator(style: drop.style, delegate: delegate)
+        self.animator = Animator(position: drop.position, delegate: delegate)
         self.context = AnimationContext(view: view, container: maskingView)
     }
 

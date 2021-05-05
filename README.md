@@ -30,11 +30,13 @@ A µFramework for showing iOS 13 like alerts.
 let drop = Drop(title: "Title", subtitle: "Subtitle")
 ```
 
-2. Present it:
+2. Show it:
 
 ```swift
 Drops.show(drop)
 ```
+
+Read the [docs](https://omaralbeik.github.io/drops/) for more usage options.
 
 ---
 

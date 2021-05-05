@@ -21,35 +21,29 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
+import XCTest
+@testable import Drops
 
-final class WindowViewController: UIViewController {
-    init() {
-        let view = PassthroughView()
-        let window = PassthroughWindow(hitTestView: view)
-        self.window = window
-        super.init(nibName: nil, bundle: nil)
-        self.view = view
-        window.rootViewController = self
+final class WindowViewControllerTests: XCTestCase {
+    func testInitializer() {
+        let viewController = WindowViewController()
+
+        XCTAssert(viewController.view is PassthroughView)
+        XCTAssert(viewController.window is PassthroughWindow)
     }
 
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError()
+    func testInstall() {
+        let viewController = WindowViewController()
+        viewController.install()
+
+        XCTAssertEqual(viewController.window?.frame, UIScreen.main.bounds)
+        XCTAssertEqual(viewController.window?.isHidden, false)
     }
 
-    func install() {
-        window?.frame = UIScreen.main.bounds
-        window?.isHidden = false
-    }
+    func testUninstall() {
+        let viewController = WindowViewController()
+        viewController.uninstall()
 
-    func uninstall() {
-        window?.isHidden = true
-        if #available(iOS 13, *) {
-            window?.windowScene = nil
-        }
-        window = nil
+        XCTAssertNil(viewController.window)
     }
-
-    var window: UIWindow?
 }
