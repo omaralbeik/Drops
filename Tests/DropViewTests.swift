@@ -58,10 +58,11 @@ final class DropViewTests: XCTestCase {
 
         XCTAssertEqual(created.count, expected.count)
 
-        for index in 0..<created.count {
-            XCTAssertEqual(created[index].constant, expected[index].constant)
-            XCTAssertEqual(created[index].multiplier, expected[index].multiplier)
-        }
+        zip(created, expected)
+            .forEach { created, expected in
+                XCTAssertEqual(created.constant, expected.constant)
+                XCTAssertEqual(created.multiplier, expected.multiplier)
+            }
     }
 
     func testLayoutConstraintsForTitleAndSubtitle() {
@@ -82,10 +83,11 @@ final class DropViewTests: XCTestCase {
 
         XCTAssertEqual(created.count, expected.count)
 
-        for index in 0..<created.count {
-            XCTAssertEqual(created[index].constant, expected[index].constant)
-            XCTAssertEqual(created[index].multiplier, expected[index].multiplier)
-        }
+        zip(created, expected)
+            .forEach { created, expected in
+                XCTAssertEqual(created.constant, expected.constant)
+                XCTAssertEqual(created.multiplier, expected.multiplier)
+            }
     }
 
     func testLayoutConstraintsForTitleAndAction() {
@@ -106,10 +108,11 @@ final class DropViewTests: XCTestCase {
 
         XCTAssertEqual(created.count, expected.count)
 
-        for index in 0..<created.count {
-            XCTAssertEqual(created[index].constant, expected[index].constant)
-            XCTAssertEqual(created[index].multiplier, expected[index].multiplier)
-        }
+        zip(created, expected)
+            .forEach { created, expected in
+                XCTAssertEqual(created.constant, expected.constant)
+                XCTAssertEqual(created.multiplier, expected.multiplier)
+            }
     }
 
     func testTapGestureAddedWhenActionWithNoIcon() {
