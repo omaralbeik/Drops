@@ -41,9 +41,6 @@ Pods/
 ## Carthage
 Carthage/Build
 
-## Jazzy docs
-docs/
-
 ## Fastlane
 fastlane/report.xml
 fastlane/Preview.html

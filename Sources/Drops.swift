@@ -27,6 +27,7 @@ typealias AnimationCompletion = (_ completed: Bool) -> Void
 
 private let sharedInstance = Drops()
 
+/// Drops.
 public final class Drops {
     private func show(drop: Drop) {
         let presenter = Presenter(drop: drop, delegate: self)
@@ -140,14 +141,18 @@ extension Drops: AnimatorDelegate {
 }
 
 public extension Drops {
+    /// Show a drop.
+    /// - Parameter drop: `Drop` to show.
     static func show(_ drop: Drop) {
         sharedInstance.show(drop: drop)
     }
 
+    /// Hide all drops.
     static func hideAll() {
         sharedInstance.hideAll()
     }
 
+    /// Hide currently shown drop.
     static func hideCurrent() {
         sharedInstance.hideCurrent()
     }
