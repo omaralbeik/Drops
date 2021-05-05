@@ -6,6 +6,10 @@ A µFramework for showing iOS 13 like alerts.
 
 ---
 
+![CI](https://github.com/omaralbeik/Drops/workflows/Drops/badge.svg)
+[![codecov](https://codecov.io/gh/omaralbeik/Drops/branch/main/graph/badge.svg?token=399UQIKSLR)](https://codecov.io/gh/omaralbeik/Drops)
+[![SPM compatible](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
+
 ## Features / Todos
 
 - [x] iOS 11+
@@ -14,11 +18,11 @@ A µFramework for showing iOS 13 like alerts.
 - [x] Show from top or buttom of screen
 - [x] Interactive dismissal
 - [x] Queue multiple drops
+- [x] Add basic CI with Github Actions
 - [ ] VoiceOver support
 - [ ] Accessibility checkup
 - [ ] SwiftUI support
-- [ ] Add tests
-- [ ] Add basic CI with Github Actions
+- [ ] Add more tests
 
 ---
 
@@ -58,7 +62,7 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a tool for ma
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/omaralbeik/Drops.git", from: "0.2.0")
+    .package(url: "https://github.com/omaralbeik/Drops.git", from: "0.4.0")
 ]
 ```
 

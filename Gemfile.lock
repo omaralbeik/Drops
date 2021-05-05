@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rouge (2.0.7)
+    xcpretty (0.3.0)
+      rouge (~> 2.0.7)
+    xcpretty-json-formatter (0.1.1)
+      xcpretty (~> 0.2, >= 0.0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  xcpretty
+  xcpretty-json-formatter
+
+BUNDLED WITH
+   2.1.4

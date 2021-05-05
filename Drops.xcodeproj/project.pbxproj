@@ -150,17 +150,17 @@
 		07D8146F26361DB7003F51DB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				07D8148B26361DC6003F51DB /* Drop.swift */,
-				0755C1E1263A4EF0002209FD /* DropView.swift */,
-				0785D37726416D6A004D6171 /* PassthroughView.swift */,
-				0785D37B26416DB3004D6171 /* Weak.swift */,
-				0785D37926416D84004D6171 /* PassthroughWindow.swift */,
-				0785D37D26416DDF004D6171 /* WindowViewController.swift */,
+				07D8147126361DB7003F51DB /* Info.plist */,
 				0785D37F26416E0E004D6171 /* AnimationContext.swift */,
 				0785D38126416E3A004D6171 /* Animator.swift */,
-				0785D38C2641F487004D6171 /* Presenter.swift */,
+				07D8148B26361DC6003F51DB /* Drop.swift */,
 				0785D3732640BBF7004D6171 /* Drops.swift */,
-				07D8147126361DB7003F51DB /* Info.plist */,
+				0755C1E1263A4EF0002209FD /* DropView.swift */,
+				0785D37726416D6A004D6171 /* PassthroughView.swift */,
+				0785D37926416D84004D6171 /* PassthroughWindow.swift */,
+				0785D38C2641F487004D6171 /* Presenter.swift */,
+				0785D37B26416DB3004D6171 /* Weak.swift */,
+				0785D37D26416DDF004D6171 /* WindowViewController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -170,11 +170,11 @@
 			children = (
 				07D8147D26361DB7003F51DB /* Info.plist */,
 				0755C205263B5EFA002209FD /* DropTests.swift */,
+				0785D3A8264244D5004D6171 /* DropViewTests.swift */,
+				0785D3A526424397004D6171 /* PassthroughViewTests.swift */,
+				0785D3AC26424DD2004D6171 /* PassthroughWindowTests.swift */,
 				0785D3A12642429A004D6171 /* WeakTests.swift */,
 				0785D3AA26424A0C004D6171 /* WindowViewControllerTests.swift */,
-				0785D3A526424397004D6171 /* PassthroughViewTests.swift */,
-				0785D3A8264244D5004D6171 /* DropViewTests.swift */,
-				0785D3AC26424DD2004D6171 /* PassthroughWindowTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -182,11 +182,11 @@
 		07D8149826361DE8003F51DB /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				07D814A726361DE9003F51DB /* Info.plist */,
 				07D8149926361DE8003F51DB /* AppDelegate.swift */,
 				07D8149D26361DE8003F51DB /* ViewController.swift */,
 				07D814A226361DE9003F51DB /* Assets.xcassets */,
 				07D814A426361DE9003F51DB /* LaunchScreen.storyboard */,
-				07D814A726361DE9003F51DB /* Info.plist */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -212,6 +212,7 @@
 				07D8146926361DB7003F51DB /* Sources */,
 				07D8146A26361DB7003F51DB /* Frameworks */,
 				07D8146B26361DB7003F51DB /* Resources */,
+				074941E52642ACCD0031D338 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -229,6 +230,7 @@
 				07D8147226361DB7003F51DB /* Sources */,
 				07D8147326361DB7003F51DB /* Frameworks */,
 				07D8147426361DB7003F51DB /* Resources */,
+				074941E42642ACC30031D338 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -247,7 +249,7 @@
 				07D8149326361DE8003F51DB /* Sources */,
 				07D8149426361DE8003F51DB /* Frameworks */,
 				07D8149526361DE8003F51DB /* Resources */,
-				0755C1E7263B518A002209FD /* Swiftlint */,
+				0755C1E7263B518A002209FD /* SwiftLint */,
 				0755C204263B5D0B002209FD /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -328,7 +330,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0755C1E7263B518A002209FD /* Swiftlint */ = {
+		074941E42642ACC30031D338 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -337,14 +339,50 @@
 			);
 			inputPaths = (
 			);
-			name = Swiftlint;
+			name = SwiftLint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "swiftlint\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		074941E52642ACCD0031D338 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		0755C1E7263B518A002209FD /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -555,7 +593,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.omaralbeik.drops;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -584,7 +622,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.3.0;
+				MARKETING_VERSION = 0.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.omaralbeik.drops;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
