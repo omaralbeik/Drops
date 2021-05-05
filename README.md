@@ -6,6 +6,10 @@ A µFramework for showing iOS 13 like alerts.
 
 ---
 
+![CI](https://github.com/omaralbeik/Drops/workflows/Drops/badge.svg)
+[![codecov](https://codecov.io/gh/omaralbeik/Drops/branch/main/graph/badge.svg?token=399UQIKSLR)](https://codecov.io/gh/omaralbeik/Drops)
+[![SPM compatible](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
+
 ## Features / Todos
 
 - [x] iOS 11+
