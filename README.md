@@ -36,7 +36,7 @@ let drop = Drop(title: "Title", subtitle: "Subtitle")
 Drops.show(drop)
 ```
 
-Read the [docs](https://omaralbeik.github.io/drops/) for more usage options.
+Read the [docs](https://omaralbeik.github.io/Drops) for more usage options.
 
 ---
 
@@ -58,7 +58,7 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a tool for ma
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/omaralbeik/drops.git", from: "0.2.0")
+    .package(url: "https://github.com/omaralbeik/Drops.git", from: "0.2.0")
 ]
 ```
 
