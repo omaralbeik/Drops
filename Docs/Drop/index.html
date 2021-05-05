@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drops - Drop</title>
+    <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/">
+            <strong>
+                Drops
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Nested Types</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#drop.init(title:subtitle:icon:action:style:duration:)">init(title:​subtitle:​icon:​action:​style:​duration:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#drop.title">title</a></li><li class="variable"><a href="#drop.subtitle">subtitle</a></li><li class="variable"><a href="#drop.icon">icon</a></li><li class="variable"><a href="#drop.action">action</a></li><li class="variable"><a href="#drop.style">style</a></li><li class="variable"><a href="#drop.duration">duration</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Structure</small>
+    <code class="name">Drop</code>
+</h1>
+
+<div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">struct</span> <span class="type">Drop</span> </code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>An object representing a drop.</p>
+
+</div>
+<section id="relationships">
+    <h2 hidden>Relationships</h2>
+        
+        <h3>Nested Types</h3>
+<dl>
+    <dt class="enumeration"><code><a href="/Drop_Style">Drop.Style</a></code></dt>
+<dd><p>An enum representing drop presentation style.</p>
+</dd>
+<dt class="enumeration"><code><a href="/Drop_Duration">Drop.Duration</a></code></dt>
+<dd><p>An enum representing a drop duration on screen.</p>
+</dd>
+<dt class="structure"><code><a href="/Drop_Action">Drop.Action</a></code></dt>
+<dd><p>An object representing a drop action.</p>
+</dd>
+</dl>
+</section>
+    <section id="initializers">
+        <h2>Initializers</h2>
+
+        <div role="article" class="initializer" id="drop.init(title:subtitle:icon:action:style:duration:)">
+    <h3>
+        <code>init(title:​subtitle:​icon:​action:​style:​duration:​)</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(
+        <span class="variable">title</span>: <span class="type">String</span>,
+        <span class="variable">subtitle</span>: <span class="type">String</span>? = <span class="keyword">nil</span>,
+        <span class="variable">icon</span>: <span class="type">UIImage</span>? = <span class="keyword">nil</span>,
+        <span class="variable">action</span>: <span class="type">Action</span>? = <span class="keyword">nil</span>,
+        <span class="variable">style</span>: <span class="type">Style</span> = .<span class="variable">top</span>,
+        <span class="variable">duration</span>: <span class="type">Duration</span> = .<span class="variable">recommended</span>
+    ) </code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Create a new drop.</p>
+
+</div>
+<h4>Parameters</h4>
+
+<table class="parameters">
+  <thead hidden>
+  <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>title</th>
+    <td><code class="type">String</code></td>
+    <td><p>Title.</p>
+</td>
+</tr>
+<tr>
+    <th>subtitle</th>
+    <td><code class="type">String?</code></td>
+    <td><p>Optional subtitle. Defaults to <code>nil</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>icon</th>
+    <td><code class="type">UIImage?</code></td>
+    <td><p>Optional icon.</p>
+</td>
+</tr>
+<tr>
+    <th>action</th>
+    <td><code class="type">Action?</code></td>
+    <td><p>Optional action.</p>
+</td>
+</tr>
+<tr>
+    <th>style</th>
+    <td><code class="type">Style</code></td>
+    <td><p>Style. Defaults to <code>Drop.Style.top</code>.</p>
+</td>
+</tr>
+<tr>
+    <th>duration</th>
+    <td><code class="type">Duration</code></td>
+    <td><p>Duration. Defaults to <code>Drop.Duration.recommended</code>.</p>
+</td>
+</tr>
+  </tbody>
+</table>
+</div>
+    </section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="drop.title">
+    <h3>
+        <code>title</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">title</span>: <span class="type">String</span></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Title.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drop.subtitle">
+    <h3>
+        <code>subtitle</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">subtitle</span>: <span class="type">String</span>?</code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Subtitle.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drop.icon">
+    <h3>
+        <code>icon</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">icon</span>: <span class="type">UIImage</span>?</code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Icon.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drop.action">
+    <h3>
+        <code>action</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">action</span>: <span class="type">Action</span>?</code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Action.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drop.style">
+    <h3>
+        <code>style</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">style</span>: <span class="type">Style</span></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Style.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drop.duration">
+    <h3>
+        <code>duration</code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">duration</span>: <span class="type">Duration</span></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Duration.</p>
+
+</div>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2021-05-05T04:35:59+0200">5 May 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.6</span>.
+</p>
+    </footer>
+</body>
+</html>
