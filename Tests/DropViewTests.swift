@@ -58,9 +58,9 @@ final class DropViewTests: XCTestCase {
 
         XCTAssertEqual(created.count, expected.count)
 
-        for i in 0..<created.count {
-            XCTAssertEqual(created[i].constant, expected[i].constant)
-            XCTAssertEqual(created[i].multiplier, expected[i].multiplier)
+        for index in 0..<created.count {
+            XCTAssertEqual(created[index].constant, expected[index].constant)
+            XCTAssertEqual(created[index].multiplier, expected[index].multiplier)
         }
     }
 
@@ -82,9 +82,9 @@ final class DropViewTests: XCTestCase {
 
         XCTAssertEqual(created.count, expected.count)
 
-        for i in 0..<created.count {
-            XCTAssertEqual(created[i].constant, expected[i].constant)
-            XCTAssertEqual(created[i].multiplier, expected[i].multiplier)
+        for index in 0..<created.count {
+            XCTAssertEqual(created[index].constant, expected[index].constant)
+            XCTAssertEqual(created[index].multiplier, expected[index].multiplier)
         }
     }
 
@@ -106,9 +106,9 @@ final class DropViewTests: XCTestCase {
 
         XCTAssertEqual(created.count, expected.count)
 
-        for i in 0..<created.count {
-            XCTAssertEqual(created[i].constant, expected[i].constant)
-            XCTAssertEqual(created[i].multiplier, expected[i].multiplier)
+        for index in 0..<created.count {
+            XCTAssertEqual(created[index].constant, expected[index].constant)
+            XCTAssertEqual(created[index].multiplier, expected[index].multiplier)
         }
     }
 

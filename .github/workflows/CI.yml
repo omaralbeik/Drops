@@ -1,0 +1,32 @@
+name: Drops
+
+on: 
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main
+
+jobs:
+  Darwin:
+    name: Darwin
+    runs-on: macos-latest
+    env:
+      PROJECT: Drops.xcodeproj
+    steps:
+    - uses: actions/checkout@v1
+    - name: Bundle Install
+      run: bundle install
+    - name: Brew Upgrade
+      run: |
+        brew update
+        brew outdated xctool || brew upgrade xctool
+        brew install swiftlint
+    - name: Test iOS
+      run: |
+        xcodebuild clean build test -project $PROJECT -scheme $SCHEME -destination "$DESTINATION" | XCPRETTY_JSON_FILE_OUTPUT="xcodebuild-ios.json" xcpretty -f `xcpretty-json-formatter`
+        bash <(curl -s https://codecov.io/bash) -cF ios -J 'Drops'
+      env:
+          SCHEME: Drops
+          DESTINATION: platform=iOS Simulator,name=iPhone 12
