@@ -147,7 +147,7 @@ internal final class DropView: UIView {
         } else {
             label.textColor = .black
         }
-        label.font = .preferredFont(forTextStyle: .subheadline).bold
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline).bold
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
