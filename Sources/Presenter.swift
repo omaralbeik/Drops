@@ -38,7 +38,10 @@ final class Presenter: NSObject {
 
     func show(completion: @escaping AnimationCompletion) {
         install()
-        animator.show(context: context) { (completed) in
+        animator.show(context: context) { [weak self] completed in
+            if let drop = self?.drop {
+                self?.announcementAccessibilityMessage(for: drop)
+            }
             completion(completed)
         }
     }
@@ -81,5 +84,12 @@ final class Presenter: NSObject {
         ])
 
         containerView.layoutIfNeeded()
+    }
+
+    func announcementAccessibilityMessage(for drop: Drop) {
+        let message = [drop.title, drop.subtitle]
+            .compactMap { $0 }
+            .joined(separator: "\n")
+        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: message)
     }
 }

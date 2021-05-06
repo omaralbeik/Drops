@@ -26,7 +26,7 @@ import Drops
 
 struct ContentView: View {
 
-    @State var title: String = "Title"
+    @State var title: String = "Hello There!"
     @State var subtitle: String = "Use Drops to show alerts"
     @State var positionIndex: Int = 0
     @State var duration: Float = 2.0
@@ -75,7 +75,7 @@ struct ContentView: View {
                 Button(action: {
                     showDrop()
                 }, label: {
-                    Text("Show Drop").foregroundColor(.white).padding()
+                    Text("Show Drop").foregroundColor(.white).padding(10)
                 })
                 .frame(maxWidth: .infinity)
                 .background(Color.blue)

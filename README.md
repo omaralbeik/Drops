@@ -6,23 +6,20 @@ A µFramework for showing alerts like the one used when copying from pasteboard 
 
 ---
 
-![CI](https://github.com/omaralbeik/Drops/workflows/Drops/badge.svg)
+[![CI](https://github.com/omaralbeik/Drops/workflows/Drops/badge.svg)](https://github.com/omaralbeik/Drops/actions)
 [![codecov](https://codecov.io/gh/omaralbeik/Drops/branch/main/graph/badge.svg?token=399UQIKSLR)](https://codecov.io/gh/omaralbeik/Drops)
 [![SPM compatible](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
 
-## Features / Todos
+## Features
 
-- [x] iOS 11+
-- [x] UIKit/SwiftUI support
-- [x] Light/dark mode
-- [x] Show with custom duration
-- [x] Show from top or buttom of screen
-- [x] Interactive dismissal
-- [x] Queue multiple drops
-- [x] Add basic CI with Github Actions
-- [ ] VoiceOver support
-- [ ] Accessibility checkup
-- [ ] Add more tests
+- iOS 11+
+- Can be used in SwiftUI and UIKit applications
+- Light/Dark modes
+- Interactive dismissal
+- Queue to show consecutive drops
+- Support dynamic font sizing
+- Support announcing title and subtitle via VoiceOver
+- Show from top or buttom of screen
 
 ---
 
@@ -63,7 +60,7 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a tool for ma
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/omaralbeik/Drops.git", from: "0.5.0")
+    .package(url: "https://github.com/omaralbeik/Drops.git", from: "0.6.0")
 ]
 ```
 
