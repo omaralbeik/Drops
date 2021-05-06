@@ -19,7 +19,7 @@ A µFramework for showing alerts like the one used when copying from pasteboard 
 - Queue to show consecutive drops
 - Support dynamic font sizing
 - Support announcing title and subtitle via VoiceOver
-- Show from top or buttom of screen
+- Show from top or bottom of screen
 
 ---
 
