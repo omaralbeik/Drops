@@ -1,6 +1,6 @@
 # Drops 💧
 
-A µFramework for showing iOS 13 like alerts.
+A µFramework for showing alerts like the one used when copying from pasteboard or connecting Apple pencil.
 
 ![Demo](Assets/demo.gif)
 

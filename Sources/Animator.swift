@@ -35,18 +35,26 @@ final class Animator {
         self.delegate = delegate
     }
 
+    let position: Drop.Position
     weak var delegate: AnimatorDelegate?
 
-    private let position: Drop.Position
+    var context: AnimationContext?
 
-    private var showDuration: TimeInterval = 0.75
-    private var hideDuration: TimeInterval = 0.25
-    private var springDamping: CGFloat = 0.8
-    private var closeSpeedThreshold: CGFloat = 750.0
-    private var closePercentThreshold: CGFloat = 0.33
-    private var closeAbsoluteThreshold: CGFloat = 75.0
+    private let showDuration: TimeInterval = 0.75
+    private let hideDuration: TimeInterval = 0.25
+    private let springDamping: CGFloat = 0.8
 
-    private var context: AnimationContext?
+    private let closeSpeedThreshold: CGFloat = 750.0
+    private let closePercentThreshold: CGFloat = 0.33
+    private let closeAbsoluteThreshold: CGFloat = 75.0
+
+    let bounceOffset: CGFloat = 5
+
+    private var closing = false
+    private var rubberBanding = true
+    private var closeSpeed: CGFloat = 0.0
+    private var closePercent: CGFloat = 0.0
+    private var panTranslationY: CGFloat = 0.0
 
     private lazy var panGestureRecognizer: UIPanGestureRecognizer = {
         let recognizer = UIPanGestureRecognizer()
@@ -54,57 +62,7 @@ final class Animator {
         return recognizer
     }()
 
-    func show(context: AnimationContext, completion: @escaping AnimationCompletion) {
-        install(context: context)
-        show(completion: completion)
-    }
-
-    func hide(context: AnimationContext, completion: @escaping AnimationCompletion) {
-        UIView.animate(
-            withDuration: hideDuration,
-            delay: 0,
-            options: [.beginFromCurrentState, .curveEaseIn],
-            animations: { [weak self] in
-                guard let position = self?.position else { return }
-                let view = context.view
-                view.alpha = 0
-                switch position {
-                case .top:
-                    view.transform = CGAffineTransform(translationX: 0, y: -view.frame.height)
-                case .bottom:
-                    view.transform = CGAffineTransform(translationX: 0, y: view.frame.maxY + view.frame.height)
-                }
-            },
-            completion: completion
-        )
-    }
-
-    private func show(completion: @escaping AnimationCompletion) {
-        guard let view = context?.view else {
-            completion(false)
-            return
-        }
-
-        view.alpha = 0
-
-        let animationDistance = abs(view.transform.ty)
-        let initialSpringVelocity = animationDistance == 0.0 ? 0.0 : min(0.0, closeSpeed / animationDistance)
-
-        UIView.animate(
-            withDuration: showDuration,
-            delay: 0.0,
-            usingSpringWithDamping: springDamping,
-            initialSpringVelocity: initialSpringVelocity,
-            options: [.beginFromCurrentState, .curveLinear, .allowUserInteraction],
-            animations: { [weak view] in
-                view?.alpha = 1
-                view?.transform = .identity
-            },
-            completion: completion
-        )
-    }
-
-    private func install(context: AnimationContext) {
+    func install(context: AnimationContext) {
         let view = context.view
         let container = context.container
 
@@ -147,12 +105,59 @@ final class Animator {
         view.addGestureRecognizer(panGestureRecognizer)
     }
 
-    private var bounceOffset: CGFloat = 5
-    private var closing = false
-    private var rubberBanding = true
-    private var closeSpeed: CGFloat = 0.0
-    private var closePercent: CGFloat = 0.0
-    private var panTranslationY: CGFloat = 0.0
+    func show(context: AnimationContext, completion: @escaping AnimationCompletion) {
+        install(context: context)
+        show(completion: completion)
+    }
+
+    func hide(context: AnimationContext, completion: @escaping AnimationCompletion) {
+        let position = self.position
+        let view = context.view
+        UIView.animate(
+            withDuration: hideDuration,
+            delay: 0,
+            options: [.beginFromCurrentState, .curveEaseIn],
+            animations: { [weak view] in
+                guard let view = view else {
+                    completion(false)
+                    return
+                }
+                view.alpha = 0
+                switch position {
+                case .top:
+                    view.transform = CGAffineTransform(translationX: 0, y: -view.frame.height)
+                case .bottom:
+                    view.transform = CGAffineTransform(translationX: 0, y: view.frame.maxY + view.frame.height)
+                }
+            },
+            completion: completion
+        )
+    }
+
+    func show(completion: @escaping AnimationCompletion) {
+        guard let view = context?.view else {
+            completion(false)
+            return
+        }
+
+        view.alpha = 0
+
+        let animationDistance = abs(view.transform.ty)
+        let initialSpringVelocity = animationDistance == 0.0 ? 0.0 : min(0.0, closeSpeed / animationDistance)
+
+        UIView.animate(
+            withDuration: showDuration,
+            delay: 0.0,
+            usingSpringWithDamping: springDamping,
+            initialSpringVelocity: initialSpringVelocity,
+            options: [.beginFromCurrentState, .curveLinear, .allowUserInteraction],
+            animations: { [weak view] in
+                view?.alpha = 1
+                view?.transform = .identity
+            },
+            completion: completion
+        )
+    }
 
     @objc
     func handlePan(gestureRecognizer: UIPanGestureRecognizer) {
@@ -211,10 +216,10 @@ final class Animator {
         }
 
         closing = false
-        rubberBanding = false
         closeSpeed = 0.0
         closePercent = 0.0
         panTranslationY = 0.0
+
         show { [weak self] _ in
             guard let self = self else { return }
             self.delegate?.panEnded(animator: self)
