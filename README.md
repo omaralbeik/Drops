@@ -20,7 +20,7 @@ A µFramework for showing alerts like the one used when copying from pasteboard 
 - [x] Interactive dismissal
 - [x] Queue multiple drops
 - [x] Add basic CI with Github Actions
-- [ ] VoiceOver support
+- [x] VoiceOver support
 - [ ] Accessibility checkup
 - [ ] Add more tests
 
@@ -63,7 +63,7 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a tool for ma
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/omaralbeik/Drops.git", from: "0.5.0")
+    .package(url: "https://github.com/omaralbeik/Drops.git", from: "0.6.0")
 ]
 ```
 

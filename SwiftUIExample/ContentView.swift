@@ -75,7 +75,7 @@ struct ContentView: View {
                 Button(action: {
                     showDrop()
                 }, label: {
-                    Text("Show Drop").foregroundColor(.white).padding()
+                    Text("Show Drop").foregroundColor(.white).padding(10)
                 })
                 .frame(maxWidth: .infinity)
                 .background(Color.blue)

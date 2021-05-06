@@ -20,7 +20,6 @@
 		0749420B2642D4140031D338 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749420A2642D4140031D338 /* App.swift */; };
 		0749420D2642D4140031D338 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0749420C2642D4140031D338 /* ContentView.swift */; };
 		0749420F2642D4160031D338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0749420E2642D4160031D338 /* Assets.xcassets */; };
-		074942122642D4160031D338 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 074942112642D4160031D338 /* Preview Assets.xcassets */; };
 		074942172642D46E0031D338 /* Drops.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D8146D26361DB7003F51DB /* Drops.framework */; };
 		074942182642D46E0031D338 /* Drops.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07D8146D26361DB7003F51DB /* Drops.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0755C206263B5EFA002209FD /* DropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755C205263B5EFA002209FD /* DropTests.swift */; };
@@ -105,7 +104,6 @@
 		0749420A2642D4140031D338 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		0749420C2642D4140031D338 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0749420E2642D4160031D338 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		074942112642D4160031D338 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		074942132642D4160031D338 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0755C1E1263A4EF0002209FD /* DropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropView.swift; sourceTree = "<group>"; };
 		0755C205263B5EFA002209FD /* DropTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropTests.swift; sourceTree = "<group>"; };
@@ -185,17 +183,8 @@
 				0749420A2642D4140031D338 /* App.swift */,
 				0749420C2642D4140031D338 /* ContentView.swift */,
 				0749420E2642D4160031D338 /* Assets.xcassets */,
-				074942102642D4160031D338 /* Preview Content */,
 			);
 			path = SwiftUIExample;
-			sourceTree = "<group>";
-		};
-		074942102642D4160031D338 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				074942112642D4160031D338 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		0755C1FF263B5D0B002209FD /* Frameworks */ = {
@@ -411,7 +400,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				074942122642D4160031D338 /* Preview Assets.xcassets in Resources */,
 				0749420F2642D4160031D338 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,9 +590,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftUIExample/Preview Content\"";
 				DEVELOPMENT_TEAM = C3VKVFB3SA;
-				ENABLE_PREVIEWS = YES;
+				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = SwiftUIExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -624,9 +611,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftUIExample/Preview Content\"";
 				DEVELOPMENT_TEAM = C3VKVFB3SA;
-				ENABLE_PREVIEWS = YES;
+				ENABLE_PREVIEWS = NO;
 				INFOPLIST_FILE = SwiftUIExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -780,7 +766,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.omaralbeik.drops;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -809,7 +795,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.omaralbeik.drops;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
