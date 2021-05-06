@@ -59,12 +59,12 @@ final class Presenter: NSObject {
         }
     }
 
-    private let maskingView = PassthroughView()
-    private let view: UIView
-    private let viewController: Weak<WindowViewController>
-    private let context: AnimationContext
+    let maskingView = PassthroughView()
+    let view: UIView
+    let viewController: Weak<WindowViewController>
+    let context: AnimationContext
 
-    private func install() {
+    func install() {
         guard let container = viewController.value else { return }
         guard let containerView = container.view else { return }
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071E7A332644930E006ABC58 /* AnimatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E7A322644930E006ABC58 /* AnimatorTests.swift */; };
+		071E7A3526449FE9006ABC58 /* PresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E7A3426449FE9006ABC58 /* PresenterTests.swift */; };
+		071E7A372644A019006ABC58 /* TestAnimatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071E7A362644A019006ABC58 /* TestAnimatorDelegate.swift */; };
 		074941ED2642CCD20031D338 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074941EC2642CCD20031D338 /* AppDelegate.swift */; };
 		074941EF2642CCD20031D338 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074941EE2642CCD20031D338 /* SceneDelegate.swift */; };
 		074941F62642CCD40031D338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 074941F52642CCD40031D338 /* Assets.xcassets */; };
@@ -21,7 +24,6 @@
 		074942172642D46E0031D338 /* Drops.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D8146D26361DB7003F51DB /* Drops.framework */; };
 		074942182642D46E0031D338 /* Drops.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07D8146D26361DB7003F51DB /* Drops.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0755C206263B5EFA002209FD /* DropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0755C205263B5EFA002209FD /* DropTests.swift */; };
-		0785D38326416EF2004D6171 /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D37D26416DDF004D6171 /* WindowViewController.swift */; };
 		0785D38426416EF3004D6171 /* PassthroughWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D37926416D84004D6171 /* PassthroughWindow.swift */; };
 		0785D38526416EF3004D6171 /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D37726416D6A004D6171 /* PassthroughView.swift */; };
 		0785D38626416EF3004D6171 /* AnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D37F26416E0E004D6171 /* AnimationContext.swift */; };
@@ -36,6 +38,7 @@
 		0785D3A9264244D5004D6171 /* DropViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3A8264244D5004D6171 /* DropViewTests.swift */; };
 		0785D3AB26424A0C004D6171 /* WindowViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3AA26424A0C004D6171 /* WindowViewControllerTests.swift */; };
 		0785D3AD26424DD2004D6171 /* PassthroughWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3AC26424DD2004D6171 /* PassthroughWindowTests.swift */; };
+		078898D02644A6CC009F04A5 /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D37D26416DDF004D6171 /* WindowViewController.swift */; };
 		07D8147726361DB7003F51DB /* Drops.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D8146D26361DB7003F51DB /* Drops.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +92,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		071E7A322644930E006ABC58 /* AnimatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatorTests.swift; sourceTree = "<group>"; };
+		071E7A3426449FE9006ABC58 /* PresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterTests.swift; sourceTree = "<group>"; };
+		071E7A362644A019006ABC58 /* TestAnimatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAnimatorDelegate.swift; sourceTree = "<group>"; };
 		074941EA2642CCD20031D338 /* UIKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		074941EC2642CCD20031D338 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		074941EE2642CCD20031D338 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -244,10 +250,13 @@
 			isa = PBXGroup;
 			children = (
 				07D8147D26361DB7003F51DB /* Info.plist */,
+				071E7A322644930E006ABC58 /* AnimatorTests.swift */,
 				0755C205263B5EFA002209FD /* DropTests.swift */,
 				0785D3A8264244D5004D6171 /* DropViewTests.swift */,
 				0785D3A526424397004D6171 /* PassthroughViewTests.swift */,
 				0785D3AC26424DD2004D6171 /* PassthroughWindowTests.swift */,
+				071E7A3426449FE9006ABC58 /* PresenterTests.swift */,
+				071E7A362644A019006ABC58 /* TestAnimatorDelegate.swift */,
 				0785D3A12642429A004D6171 /* WeakTests.swift */,
 				0785D3AA26424A0C004D6171 /* WindowViewControllerTests.swift */,
 			);
@@ -486,13 +495,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078898D02644A6CC009F04A5 /* WindowViewController.swift in Sources */,
 				0785D38426416EF3004D6171 /* PassthroughWindow.swift in Sources */,
 				0785D38A26416EF3004D6171 /* Weak.swift in Sources */,
 				0785D38B26416EF3004D6171 /* Drops.swift in Sources */,
 				0785D38526416EF3004D6171 /* PassthroughView.swift in Sources */,
 				0785D38D2641F487004D6171 /* Presenter.swift in Sources */,
 				0785D38926416EF3004D6171 /* DropView.swift in Sources */,
-				0785D38326416EF2004D6171 /* WindowViewController.swift in Sources */,
 				0785D38726416EF3004D6171 /* Drop.swift in Sources */,
 				0785D38826416EF3004D6171 /* Animator.swift in Sources */,
 				0785D38626416EF3004D6171 /* AnimationContext.swift in Sources */,
@@ -505,6 +514,9 @@
 			files = (
 				0785D3A72642439C004D6171 /* PassthroughViewTests.swift in Sources */,
 				0785D3A9264244D5004D6171 /* DropViewTests.swift in Sources */,
+				071E7A3526449FE9006ABC58 /* PresenterTests.swift in Sources */,
+				071E7A332644930E006ABC58 /* AnimatorTests.swift in Sources */,
+				071E7A372644A019006ABC58 /* TestAnimatorDelegate.swift in Sources */,
 				0755C206263B5EFA002209FD /* DropTests.swift in Sources */,
 				0785D3AB26424A0C004D6171 /* WindowViewControllerTests.swift in Sources */,
 				0785D3AD26424DD2004D6171 /* PassthroughWindowTests.swift in Sources */,
