@@ -2,14 +2,14 @@
 
 A µFramework for showing alerts like the one used when copying from pasteboard or connecting Apple pencil.
 
-![Demo](Assets/demo.gif)
+![Demo](https://raw.githubusercontent.com/omaralbeik/Drops/main/Assets/demo.gif)
 
 ---
 
 [![CI](https://github.com/omaralbeik/Drops/workflows/Drops/badge.svg)](https://github.com/omaralbeik/Drops/actions)
 [![codecov](https://codecov.io/gh/omaralbeik/Drops/branch/main/graph/badge.svg?token=399UQIKSLR)](https://codecov.io/gh/omaralbeik/Drops)
-[![SPM compatible](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg?style=flat)](https://swift.org/package-manager/)
-
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fomaralbeik%2FDrops%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/omaralbeik/Drops)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fomaralbeik%2FDrops%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/omaralbeik/Drops)
 ## Features
 
 - iOS 11+
@@ -46,7 +46,7 @@ Read the [docs](https://omaralbeik.github.io/Drops) for more usage options.
 - Run the `SwiftUIExample` target to see how Drops works in SwiftUI applications.
 - Run the `UIKitExample` target to see how Drops works in UIKit applications.
 
-![Example](Assets/example.png)
+![Example](https://raw.githubusercontent.com/omaralbeik/Drops/main/Assets/example.png)
 
 ---
 
@@ -70,6 +70,10 @@ dependencies: [
 $ swift build
 ```
 
+### Manually
+
+Add the [Sources](https://github.com/omaralbeik/Drops/tree/main/Sources) folder to your Xcode project.
+
 ---
 
 ## Thanks
@@ -80,4 +84,4 @@ Special thanks to [SwiftKickMobile team](https://github.com/SwiftKickMobile) for
 
 ## License
 
-Drops is released under the MIT license. See [LICENSE](LICENSE) for more information.
+Drops is released under the MIT license. See [LICENSE](https://github.com/omaralbeik/Drops/blob/main/LICENSE) for more information.
