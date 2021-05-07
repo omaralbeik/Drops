@@ -29,15 +29,33 @@ private let sharedInstance = Drops()
 
 /// A shared class used to show and hide drops.
 public final class Drops {
-    private func show(drop: Drop) {
+    /// Show a drop.
+    /// - Parameter drop: `Drop` to show.
+    static func show(_ drop: Drop) {
+        sharedInstance.show(drop: drop)
+    }
+
+    /// Hide all drops.
+    static func hideAll() {
+        sharedInstance.hideAll()
+    }
+
+    /// Hide currently shown drop.
+    static func hideCurrent() {
+        sharedInstance.hideCurrent()
+    }
+
+    // MARK: - Internal
+
+    func show(drop: Drop) {
         let presenter = Presenter(drop: drop, delegate: self)
         enqueue(presenter: presenter)
     }
 
-    private let dispatchQueue = DispatchQueue(label: "com.omaralbeik.drops")
-    private var queue: [Presenter] = []
+    let dispatchQueue = DispatchQueue(label: "com.omaralbeik.drops")
+    var queue: [Presenter] = []
 
-    private var current: Presenter? {
+    var current: Presenter? {
         didSet {
             guard oldValue != nil else { return }
             let delayTime = DispatchTime.now() + 0.5
@@ -47,14 +65,14 @@ public final class Drops {
         }
     }
 
-    private weak var autohideToken: Presenter?
+    weak var autohideToken: Presenter?
 
-    private func enqueue(presenter: Presenter) {
+    func enqueue(presenter: Presenter) {
         queue.append(presenter)
         dequeueNext()
     }
 
-    private func hide(presenter: Presenter) {
+    func hide(presenter: Presenter) {
         if presenter == current {
             hideCurrent()
         } else {
@@ -62,10 +80,10 @@ public final class Drops {
         }
     }
 
-    private func hideCurrent(animated: Bool = true) {
+    func hideCurrent() {
         guard let current = current, !current.isHiding else { return }
         DispatchQueue.main.async {
-            current.hide(animated: animated) { [weak self] completed in
+            current.hide(animated: true) { [weak self] completed in
                 guard completed, let self = self else { return }
                 self.dispatchQueue.sync {
                     guard self.current === current else { return }
@@ -75,7 +93,7 @@ public final class Drops {
         }
     }
 
-    private func dequeueNext() {
+    func dequeueNext() {
         guard current == nil, !queue.isEmpty else { return }
         current = queue.removeFirst()
         autohideToken = current
@@ -98,7 +116,7 @@ public final class Drops {
         }
     }
 
-    private func queueAutoHide() {
+    func queueAutoHide() {
         guard let current = current else { return }
         autohideToken = current
         let delayTime = DispatchTime.now() + current.drop.duration.value
@@ -108,7 +126,7 @@ public final class Drops {
         }
     }
 
-    private func hideAll() {
+    func hideAll() {
         dispatchQueue.sync {
             queue.removeAll()
             hideCurrent()
@@ -137,23 +155,5 @@ extension Drops: AnimatorDelegate {
             return current
         }
         return queue.first { $0.animator === animator }
-    }
-}
-
-public extension Drops {
-    /// Show a drop.
-    /// - Parameter drop: `Drop` to show.
-    static func show(_ drop: Drop) {
-        sharedInstance.show(drop: drop)
-    }
-
-    /// Hide all drops.
-    static func hideAll() {
-        sharedInstance.hideAll()
-    }
-
-    /// Hide currently shown drop.
-    static func hideCurrent() {
-        sharedInstance.hideCurrent()
     }
 }

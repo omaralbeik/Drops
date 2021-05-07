@@ -30,6 +30,8 @@ final class WindowViewControllerTests: XCTestCase {
 
         XCTAssert(viewController.view is PassthroughView)
         XCTAssert(viewController.window is PassthroughWindow)
+
+        XCTAssertNil(WindowViewController(coder: NSCoder()))
     }
 
     func testInstall() {
