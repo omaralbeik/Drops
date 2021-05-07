@@ -41,9 +41,8 @@ internal final class DropView: UIView {
         configureViews(for: drop)
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError()
+        return nil
     }
 
     override var frame: CGRect {
@@ -126,7 +125,7 @@ internal final class DropView: UIView {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = .zero
         layer.shadowRadius = 25
-        layer.shadowOpacity = 0.1
+        layer.shadowOpacity = 0.15
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
         layer.masksToBounds = false

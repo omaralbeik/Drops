@@ -33,9 +33,8 @@ final class WindowViewController: UIViewController {
         window.rootViewController = self
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError()
+        return nil
     }
 
     func install() {

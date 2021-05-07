@@ -29,9 +29,8 @@ final class PassthroughWindow: UIWindow {
         super.init(frame: .zero)
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
-        fatalError()
+        return nil
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {

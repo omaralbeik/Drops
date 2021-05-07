@@ -25,7 +25,7 @@ import XCTest
 @testable import Drops
 
 final class DropViewTests: XCTestCase {
-    func testInit() {
+    func testInitializer() {
         let drop = Drop(title: "Test")
         let view = DropView(drop: drop)
         XCTAssertEqual(view.drop, drop)
@@ -38,6 +38,8 @@ final class DropViewTests: XCTestCase {
 
         XCTAssertFalse(view.constraints.isEmpty)
         XCTAssertFalse(view.subviews.isEmpty)
+
+        XCTAssertNil(DropView(coder: NSCoder()))
     }
 
     func testLayoutConstraintsForTitle() {
@@ -145,6 +147,19 @@ final class DropViewTests: XCTestCase {
         let view2 = DropView(drop: drop2)
         XCTAssertEqual(view2.stackView.spacing, 20)
 
+    }
+
+    func testActionIsCalledWhenButtonIsTapped() {
+        let exp = expectation(description: "Completion called with true")
+
+        let drop = Drop(title: "Title", action: .init(icon: UIImage(), handler: {
+            exp.fulfill()
+        }))
+
+        let view = DropView(drop: drop)
+        view.didTapButton()
+
+        waitForExpectations(timeout: 1)
     }
 }
 

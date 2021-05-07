@@ -38,6 +38,7 @@
 		0785D3AB26424A0C004D6171 /* WindowViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3AA26424A0C004D6171 /* WindowViewControllerTests.swift */; };
 		0785D3AD26424DD2004D6171 /* PassthroughWindowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D3AC26424DD2004D6171 /* PassthroughWindowTests.swift */; };
 		078898D02644A6CC009F04A5 /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0785D37D26416DDF004D6171 /* WindowViewController.swift */; };
+		07CEDD3B2645EEC0004EE4CD /* DropsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CEDD3A2645EEBF004EE4CD /* DropsTests.swift */; };
 		07D8147726361DB7003F51DB /* Drops.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D8146D26361DB7003F51DB /* Drops.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,7 @@
 		0785D3A8264244D5004D6171 /* DropViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropViewTests.swift; sourceTree = "<group>"; };
 		0785D3AA26424A0C004D6171 /* WindowViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowViewControllerTests.swift; sourceTree = "<group>"; };
 		0785D3AC26424DD2004D6171 /* PassthroughWindowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassthroughWindowTests.swift; sourceTree = "<group>"; };
+		07CEDD3A2645EEBF004EE4CD /* DropsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropsTests.swift; sourceTree = "<group>"; };
 		07D8146D26361DB7003F51DB /* Drops.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Drops.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		07D8147126361DB7003F51DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07D8147626361DB7003F51DB /* DropsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DropsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -240,6 +242,7 @@
 			children = (
 				07D8147D26361DB7003F51DB /* Info.plist */,
 				071E7A322644930E006ABC58 /* AnimatorTests.swift */,
+				07CEDD3A2645EEBF004EE4CD /* DropsTests.swift */,
 				0755C205263B5EFA002209FD /* DropTests.swift */,
 				0785D3A8264244D5004D6171 /* DropViewTests.swift */,
 				0785D3A526424397004D6171 /* PassthroughViewTests.swift */,
@@ -508,6 +511,7 @@
 				0755C206263B5EFA002209FD /* DropTests.swift in Sources */,
 				0785D3AB26424A0C004D6171 /* WindowViewControllerTests.swift in Sources */,
 				0785D3AD26424DD2004D6171 /* PassthroughWindowTests.swift in Sources */,
+				07CEDD3B2645EEC0004EE4CD /* DropsTests.swift in Sources */,
 				0785D3A4264242AE004D6171 /* WeakTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
