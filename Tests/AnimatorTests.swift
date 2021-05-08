@@ -111,7 +111,7 @@ final class AnimatorTests: XCTestCase {
 
         animator.install(context: context)
 
-        let exp = expectation(description: "Completion called with true")
+        let exp = expectation(description: "Completion called")
         animator.show { _ in
             if view.alpha == 1 && view.transform == .identity {
                 exp.fulfill()
@@ -128,7 +128,7 @@ final class AnimatorTests: XCTestCase {
         let container = UIView()
         let context = AnimationContext(view: view, container: container)
 
-        let exp = expectation(description: "Completion called with true")
+        let exp = expectation(description: "Completion called")
         animator.show(context: context) { _ in
             if view.alpha == 1 && view.transform == .identity {
                 exp.fulfill()
@@ -138,19 +138,24 @@ final class AnimatorTests: XCTestCase {
     }
 
     func testHide() {
-        let delegate = TestAnimatorDelegate()
-        let animator = Animator(position: .top, delegate: delegate)
+        func hide(position: Drop.Position) {
+            let delegate = TestAnimatorDelegate()
+            let animator = Animator(position: position, delegate: delegate)
 
-        let view = UIView()
-        let container = UIView()
-        let context = AnimationContext(view: view, container: container)
+            let view = UIView()
+            let container = UIView()
+            let context = AnimationContext(view: view, container: container)
 
-        let exp = expectation(description: "Completion called with true")
-        animator.hide(context: context) { _ in
-            if view.alpha == 0 {
-                exp.fulfill()
+            let exp = expectation(description: "Completion called")
+            animator.hide(context: context) { _ in
+                if view.alpha == 0 {
+                    exp.fulfill()
+                }
             }
+            waitForExpectations(timeout: 2)
         }
-        waitForExpectations(timeout: 2)
+
+        hide(position: .top)
+        hide(position: .bottom)
     }
 }

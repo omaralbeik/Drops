@@ -29,7 +29,7 @@ final class DropsTests: XCTestCase {
         let drops = Drops()
 
         let drop1 = Drop(title: "Test 1", duration: .seconds(1))
-        drops.show(drop: drop1)
+        drops.show(drop1)
 
         let exp1 = expectation(description: "First Drops is presented")
         DispatchQueue.main.async {
