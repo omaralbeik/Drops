@@ -93,7 +93,7 @@ extension Drop {
             case .recommended:
                 return 2.0
             case .seconds(let custom):
-                return custom
+                return abs(custom)
             }
         }
     }

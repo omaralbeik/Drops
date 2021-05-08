@@ -118,16 +118,13 @@ final class Animator {
             delay: 0,
             options: [.beginFromCurrentState, .curveEaseIn],
             animations: { [weak view] in
-                guard let view = view else {
-                    completion(false)
-                    return
-                }
-                view.alpha = 0
+                view?.alpha = 0
+                let frame = view?.frame ?? .zero
                 switch position {
                 case .top:
-                    view.transform = CGAffineTransform(translationX: 0, y: -view.frame.height)
+                    view?.transform = CGAffineTransform(translationX: 0, y: -frame.height)
                 case .bottom:
-                    view.transform = CGAffineTransform(translationX: 0, y: view.frame.maxY + view.frame.height)
+                    view?.transform = CGAffineTransform(translationX: 0, y: frame.maxY + frame.height)
                 }
             },
             completion: completion
