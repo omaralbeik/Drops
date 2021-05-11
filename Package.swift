@@ -34,8 +34,8 @@ let package = Package(
     ],
     dependencies: [],
     targets: [
-        .target(name: "Drops", dependencies: [], path: "Sources"),
-        .testTarget(name: "DropsTests", dependencies: ["Drops"], path: "Tests")
+        .target(name: "Drops", dependencies: [], path: "Sources", exclude: ["Info.plist"]),
+        .testTarget(name: "DropsTests", dependencies: ["Drops"], path: "Tests", exclude: ["Info.plist"])
     ],
     swiftLanguageVersions: [.v5]
 )
