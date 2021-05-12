@@ -53,7 +53,7 @@ final class DropViewTests: XCTestCase {
             view.button.heightAnchor.constraint(equalToConstant: 35),
             view.button.widthAnchor.constraint(equalToConstant: 35),
             view.stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            view.stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
+            view.stackView.topAnchor.constraint(equalTo: view.safeArea.topAnchor, constant: 15),
             view.stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             view.stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15)
         ]
@@ -78,7 +78,7 @@ final class DropViewTests: XCTestCase {
             view.button.heightAnchor.constraint(equalToConstant: 35),
             view.button.widthAnchor.constraint(equalToConstant: 35),
             view.stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            view.stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 7.5),
+            view.stackView.topAnchor.constraint(equalTo: view.safeArea.topAnchor, constant: 7.5),
             view.stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             view.stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -7.5)
         ]
@@ -103,7 +103,7 @@ final class DropViewTests: XCTestCase {
             view.button.heightAnchor.constraint(equalToConstant: 35),
             view.button.widthAnchor.constraint(equalToConstant: 35),
             view.stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            view.stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            view.stackView.topAnchor.constraint(equalTo: view.safeArea.topAnchor, constant: 10),
             view.stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             view.stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10)
         ]
