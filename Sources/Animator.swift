@@ -71,22 +71,20 @@ final class Animator {
         view.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(view)
 
-        let safeArea = container.safeAreaLayoutGuide
-
         var constraints = [
-            view.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            view.leadingAnchor.constraint(greaterThanOrEqualTo: safeArea.leadingAnchor, constant: 20),
-            view.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor, constant: -20)
+            view.centerXAnchor.constraint(equalTo: container.safeArea.centerXAnchor),
+            view.leadingAnchor.constraint(greaterThanOrEqualTo: container.safeArea.leadingAnchor, constant: 20),
+            view.trailingAnchor.constraint(lessThanOrEqualTo: container.safeArea.trailingAnchor, constant: -20)
         ]
 
         switch position {
         case .top:
             constraints += [
-                view.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: bounceOffset)
+                view.topAnchor.constraint(equalTo: container.safeArea.topAnchor, constant: bounceOffset)
             ]
         case .bottom:
             constraints += [
-                view.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -bounceOffset)
+                view.bottomAnchor.constraint(equalTo: container.safeArea.bottomAnchor, constant: -bounceOffset)
             ]
         }
 

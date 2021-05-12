@@ -1,4 +1,3 @@
-// swift-tools-version:5.3
 //
 //  Drops
 //
@@ -22,20 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import PackageDescription
+import UIKit
 
-let package = Package(
-    name: "Drops",
-    platforms: [
-        .iOS(.v10)
-    ],
-    products: [
-        .library(name: "Drops", targets: ["Drops"])
-    ],
-    dependencies: [],
-    targets: [
-        .target(name: "Drops", dependencies: [], path: "Sources", exclude: ["Info.plist"]),
-        .testTarget(name: "DropsTests", dependencies: ["Drops"], path: "Tests", exclude: ["Info.plist"])
-    ],
-    swiftLanguageVersions: [.v5]
-)
+extension UIView {
+    var safeArea: UILayoutGuide {
+        if #available(iOS 11.0, *) {
+            return safeAreaLayoutGuide
+        } else {
+            return layoutMarginsGuide
+        }
+    }
+}

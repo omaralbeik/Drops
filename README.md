@@ -12,7 +12,7 @@ A µFramework for showing alerts like the one used when copying from pasteboard 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fomaralbeik%2FDrops%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/omaralbeik/Drops)
 ## Features
 
-- iOS 11+
+- iOS 10+
 - Can be used in SwiftUI and UIKit applications
 - Light/Dark modes
 - Interactive dismissal
@@ -60,7 +60,7 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a tool for ma
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/omaralbeik/Drops.git", from: "1.0.1")
+    .package(url: "https://github.com/omaralbeik/Drops.git", from: "1.1.0")
 ]
 ```
 
@@ -75,7 +75,7 @@ $ swift build
 To integrate Drops into your Xcode project using [CocoaPods](https://cocoapods.org), specify it in your Podfile:
 
 ```rb
-pod 'Drops', :git => 'https://github.com/omaralbeik/Drops.git', :tag => '1.0.1'
+pod 'Drops', :git => 'https://github.com/omaralbeik/Drops.git', :tag => '1.1.0'
 ```
 
 ### Carthage

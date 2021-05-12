@@ -52,12 +52,11 @@ final class AnimatorTests: XCTestCase {
             XCTAssertEqual(container.subviews[0], view)
             XCTAssertEqual(view.superview, container)
 
-            let safeArea = container.safeAreaLayoutGuide
             var expectedConstraints: [NSLayoutConstraint] = [
-                view.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-                view.leadingAnchor.constraint(greaterThanOrEqualTo: safeArea.leadingAnchor, constant: 20),
-                view.trailingAnchor.constraint(lessThanOrEqualTo: safeArea.trailingAnchor, constant: -20),
-                view.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: animator.bounceOffset)
+                view.centerXAnchor.constraint(equalTo: container.safeArea.centerXAnchor),
+                view.leadingAnchor.constraint(greaterThanOrEqualTo: container.safeArea.leadingAnchor, constant: 20),
+                view.trailingAnchor.constraint(lessThanOrEqualTo: container.safeArea.trailingAnchor, constant: -20),
+                view.topAnchor.constraint(equalTo: container.safeArea.topAnchor, constant: animator.bounceOffset)
             ]
 
             switch position {
@@ -66,7 +65,10 @@ final class AnimatorTests: XCTestCase {
                 ]
             case .bottom:
                 expectedConstraints += [
-                    view.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -animator.bounceOffset)
+                    view.bottomAnchor.constraint(
+                        equalTo: container.safeArea.bottomAnchor,
+                        constant: -animator.bounceOffset
+                    )
                 ]
             }
 
