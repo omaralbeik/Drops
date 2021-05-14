@@ -187,7 +187,7 @@ final class ViewController: UIViewController {
         let title = titleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         let subtitle = subtitleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         let position: Drop.Position = positionSegmentedControl.selectedSegmentIndex == 0 ? .top : .bottom
-        let duration = Double(durationSlider.value)
+        let duration = TimeInterval(durationSlider.value)
 
         let icon = iconSwitch.isOn ? UIImage(systemName: "star.fill") : nil
         let buttonIcon = buttonSwitch.isOn ? UIImage(systemName: "arrowshape.turn.up.left") : nil

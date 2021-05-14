@@ -28,13 +28,57 @@ A µFramework for showing alerts like the one used when copying from pasteboard 
 1. Create a drop:
 
 ```swift
+let drop: Drop = "Title Only"
+```
+
+```swift
+let drop = Drop(title: "Title Only")
+```
+
+```swift
 let drop = Drop(title: "Title", subtitle: "Subtitle")
+```
+
+```swift
+let drop = Drop(title: "Title", subtitle: "Subtitle", duration: 5.0)
+```
+
+```swift
+let drop = Drop(
+    title: "Title",
+    subtitle: "Subtitle",
+    icon: UIImage(systemName: "star.fill"),
+    action: .init {
+        print("Drop tapped")
+        Drops.hideCurrent()
+    },
+    position: .bottom,
+    duration: 5.0,
+    accessibility: "Alert: Title, Subtitle"
+)
 ```
 
 2. Show it:
 
 ```swift
+Drops.show("Title")
+```
+
+```swift
 Drops.show(drop)
+```
+
+```swift
+import UIKit
+import Drops
+
+class ViewController: UIViewController {
+    let drops = Drops(delayBetweenDrops: 1.0)
+
+    func showDrop() {
+        drops.show(drop)
+    }
+}
 ```
 
 Read the [docs](https://omaralbeik.github.io/Drops) for more usage options.
@@ -60,7 +104,7 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a tool for ma
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/omaralbeik/Drops.git", from: "1.1.0")
+    .package(url: "https://github.com/omaralbeik/Drops.git", from: "1.2.0")
 ]
 ```
 
@@ -75,7 +119,7 @@ $ swift build
 To integrate Drops into your Xcode project using [CocoaPods](https://cocoapods.org), specify it in your Podfile:
 
 ```rb
-pod 'Drops', :git => 'https://github.com/omaralbeik/Drops.git', :tag => '1.1.0'
+pod 'Drops', :git => 'https://github.com/omaralbeik/Drops.git', :tag => '1.2.0'
 ```
 
 ### Carthage

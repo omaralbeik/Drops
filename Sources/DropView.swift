@@ -157,9 +157,9 @@ internal final class DropView: UIView {
         label.numberOfLines = 1
         label.textAlignment = .center
         if #available(iOS 13.0, *) {
-            label.textColor = .secondaryLabel
+            label.textColor = UIAccessibility.isDarkerSystemColorsEnabled ? .label : .secondaryLabel
         } else {
-            label.textColor = .darkGray
+            label.textColor = UIAccessibility.isDarkerSystemColorsEnabled ? .black : .darkGray
         }
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.adjustsFontForContentSizeCategory = true
@@ -172,9 +172,9 @@ internal final class DropView: UIView {
         view.contentMode = .scaleAspectFit
         view.clipsToBounds = true
         if #available(iOS 13.0, *) {
-            view.tintColor = .secondaryLabel
+            view.tintColor = UIAccessibility.isDarkerSystemColorsEnabled ? .label : .secondaryLabel
         } else {
-            view.tintColor = .darkGray
+            view.tintColor = UIAccessibility.isDarkerSystemColorsEnabled ? .black : .darkGray
         }
         return view
     }()
