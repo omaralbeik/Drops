@@ -87,9 +87,9 @@ final class Presenter: NSObject {
     }
 
     func announcementAccessibilityMessage(for drop: Drop) {
-        let message = [drop.title, drop.subtitle]
-            .compactMap { $0 }
-            .joined(separator: "\n")
-        UIAccessibility.post(notification: UIAccessibility.Notification.announcement, argument: message)
+        UIAccessibility.post(
+            notification: UIAccessibility.Notification.announcement,
+            argument: drop.accessibility.message
+        )
     }
 }

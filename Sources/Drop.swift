@@ -24,7 +24,7 @@
 import UIKit
 
 /// An object representing a drop.
-public struct Drop {
+public struct Drop: ExpressibleByStringLiteral {
     /// Create a new drop.
     /// - Parameters:
     ///   - title: Title.
@@ -33,13 +33,15 @@ public struct Drop {
     ///   - action: Optional action.
     ///   - position: Position. Defaults to `Drop.Position.top`.
     ///   - duration: Duration. Defaults to `Drop.Duration.recommended`.
+    ///   - accessibility: Accessibility options. Defaults to `nil` which will use "title, subtitle" as its message.
     public init(
         title: String,
         subtitle: String? = nil,
         icon: UIImage? = nil,
         action: Action? = nil,
         position: Position = .top,
-        duration: Duration = .recommended
+        duration: Duration = .recommended,
+        accessibility: Accessibility? = nil
     ) {
         self.title = title.trimmingCharacters(in: .whitespacesAndNewlines)
         if let subtitle = subtitle?.trimmingCharacters(in: .whitespacesAndNewlines), !subtitle.isEmpty {
@@ -49,6 +51,17 @@ public struct Drop {
         self.action = action
         self.position = position
         self.duration = duration
+        self.accessibility = accessibility
+            ?? .init(message: [title, subtitle].compactMap({ $0 }).joined(separator: ", "))
+    }
+
+    /// Create a new accessibility object.
+    /// - Parameter message: Message to be announced when the drop is shown. Defaults to drop's "title, subtitle"
+    public init(stringLiteral title: String) {
+        self.title = title
+        self.position = .top
+        self.duration = .recommended
+        self.accessibility = .init(message: title)
     }
 
     /// Title.
@@ -68,6 +81,9 @@ public struct Drop {
 
     /// Duration.
     public var duration: Duration
+
+    /// Accessibility.
+    public var accessibility: Accessibility
 }
 
 extension Drop {
@@ -82,11 +98,17 @@ extension Drop {
 
 extension Drop {
     /// An enum representing a drop duration on screen.
-    public enum Duration: Equatable {
+    public enum Duration: Equatable, ExpressibleByFloatLiteral {
         /// Hides the drop after 2.0 seconds.
         case recommended
         /// Hides the drop after the specified number of seconds.
         case seconds(TimeInterval)
+
+        /// Create a new duration object.
+        /// - Parameter value: Duration in seconds
+        public init(floatLiteral value: TimeInterval) {
+            self = .seconds(value)
+        }
 
         internal var value: TimeInterval {
             switch self {
@@ -116,5 +138,25 @@ extension Drop {
 
         /// Handler.
         public var handler: () -> Void
+    }
+}
+
+extension Drop {
+    /// An object representing accessibility options.
+    public struct Accessibility: ExpressibleByStringLiteral {
+        /// Create a new accessibility object.
+        /// - Parameter message: Message to be announced when the drop is shown. Defaults to drop's "title, subtitle"
+        public init(message: String) {
+            self.message = message
+        }
+
+        /// Create a new accessibility object.
+        /// - Parameter message: Message to be announced when the drop is shown. Defaults to drop's "title, subtitle"
+        public init(stringLiteral message: String) {
+            self.message = message
+        }
+
+        /// Accessibility message to be announced when the drop is shown.
+        public let message: String
     }
 }

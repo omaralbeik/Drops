@@ -29,7 +29,7 @@ struct ContentView: View {
     @State var title: String = "Hello There!"
     @State var subtitle: String = "Use Drops to show alerts"
     @State var positionIndex: Int = 0
-    @State var duration: Float = 2.0
+    @State var duration: TimeInterval = 2.0
     @State var hasIcon: Bool = false
     @State var hasActionIcon: Bool = false
 
@@ -75,7 +75,10 @@ struct ContentView: View {
                 Button(action: {
                     showDrop()
                 }, label: {
-                    Text("Show Drop").foregroundColor(.white).padding(10)
+                    Text("Show Drop")
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(10)
                 })
                 .frame(maxWidth: .infinity)
                 .background(Color.blue)
@@ -96,7 +99,6 @@ struct ContentView: View {
         let title = title.trimmingCharacters(in: .whitespacesAndNewlines)
         let subtitle = subtitle.trimmingCharacters(in: .whitespacesAndNewlines)
         let position: Drop.Position = positionIndex == 0 ? .top : .bottom
-        let duration = Double(duration)
 
         let icon = hasIcon ? UIImage(systemName: "star.fill") : nil
         let buttonIcon = hasActionIcon ? UIImage(systemName: "arrowshape.turn.up.left") : nil
