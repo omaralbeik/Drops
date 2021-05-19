@@ -30,6 +30,13 @@ protocol AnimatorDelegate: AnyObject {
 }
 
 final class Animator {
+    struct PanState: Equatable {
+        var closing = false
+        var closeSpeed: CGFloat = 0.0
+        var closePercent: CGFloat = 0.0
+        var panTranslationY: CGFloat = 0.0
+    }
+
     init(position: Drop.Position, delegate: AnimatorDelegate) {
         self.position = position
         self.delegate = delegate
@@ -39,22 +46,16 @@ final class Animator {
     weak var delegate: AnimatorDelegate?
 
     var context: AnimationContext?
+    var panState = PanState()
 
-    private let showDuration: TimeInterval = 0.75
-    private let hideDuration: TimeInterval = 0.25
-    private let springDamping: CGFloat = 0.8
-
-    private let closeSpeedThreshold: CGFloat = 750.0
-    private let closePercentThreshold: CGFloat = 0.33
-    private let closeAbsoluteThreshold: CGFloat = 75.0
-
+    let showDuration: TimeInterval = 0.75
+    let hideDuration: TimeInterval = 0.25
+    let springDamping: CGFloat = 0.8
+    let rubberBanding = true
+    let closeSpeedThreshold: CGFloat = 750.0
+    let closePercentThreshold: CGFloat = 0.33
+    let closeAbsoluteThreshold: CGFloat = 75.0
     let bounceOffset: CGFloat = 5
-
-    private var closing = false
-    private var rubberBanding = true
-    private var closeSpeed: CGFloat = 0.0
-    private var closePercent: CGFloat = 0.0
-    private var panTranslationY: CGFloat = 0.0
 
     private lazy var panGestureRecognizer: UIPanGestureRecognizer = {
         let recognizer = UIPanGestureRecognizer()
@@ -138,7 +139,7 @@ final class Animator {
         view.alpha = 0
 
         let animationDistance = abs(view.transform.ty)
-        let initialSpringVelocity = animationDistance == 0.0 ? 0.0 : min(0.0, closeSpeed / animationDistance)
+        let initialSpringVelocity = animationDistance == 0.0 ? 0.0 : min(0.0, panState.closeSpeed / animationDistance)
 
         UIView.animate(
             withDuration: showDuration,
@@ -156,68 +157,77 @@ final class Animator {
 
     @objc
     func handlePan(gestureRecognizer: UIPanGestureRecognizer) {
-        guard let view = context?.view else { return }
         switch gestureRecognizer.state {
         case .changed:
-            handlePanChanged(recognizer: gestureRecognizer, view: view)
+            guard let view = context?.view else { return }
+            let velocity = gestureRecognizer.velocity(in: view)
+            let translation = gestureRecognizer.translation(in: view)
+            panState = panChanged(current: panState, view: view, velocity: velocity, translation: translation)
         case .ended, .cancelled:
-            handlePanEnded(recognizer: gestureRecognizer, view: view)
+            if let initialState = panEnded(current: panState) {
+                show { [weak self] _ in
+                    guard let self = self else { return }
+                    self.delegate?.panEnded(animator: self)
+                }
+                panState = initialState
+            }
         default:
             break
         }
     }
 
-    private func handlePanChanged(recognizer: UIPanGestureRecognizer, view: UIView) {
+    func panChanged(current: PanState, view: UIView, velocity: CGPoint, translation: CGPoint) -> PanState {
+        var state = current
+        var velocity = velocity
+        var translation = translation
         let height = view.bounds.height - bounceOffset
-        if height <= 0 { return }
-        var velocity = recognizer.velocity(in: view)
-        var translation = recognizer.translation(in: view)
+        if height <= 0 { return state }
+
         if case .top = position {
             velocity.y *= -1.0
             translation.y *= -1.0
         }
+
         var translationAmount = translation.y >= 0 ? translation.y : -pow(abs(translation.y), 0.7)
-        if !closing {
-            if !rubberBanding && translationAmount < 0 { return }
-            closing = true
+
+        if !state.closing {
+            if !rubberBanding && translationAmount < 0 { return state }
+            state.closing = true
             delegate?.panStarted(animator: self)
         }
+
         if !rubberBanding && translationAmount < 0 { translationAmount = 0 }
+
         switch position {
         case .top:
             view.transform = CGAffineTransform(translationX: 0, y: -translationAmount)
         case .bottom:
             view.transform = CGAffineTransform(translationX: 0, y: translationAmount)
         }
-        closeSpeed = velocity.y
-        closePercent = translation.y / height
-        panTranslationY = translation.y
+
+        state.closeSpeed = velocity.y
+        state.closePercent = translation.y / height
+        state.panTranslationY = translation.y
+
+        return state
     }
 
-    private func handlePanEnded(recognizer: UIPanGestureRecognizer, view: UIView) {
-        if closeSpeed > closeSpeedThreshold {
+    func panEnded(current: PanState) -> PanState? {
+        if current.closeSpeed > closeSpeedThreshold {
             delegate?.hide(animator: self)
-            return
+            return nil
         }
 
-        if closePercent > closePercentThreshold {
+        if current.closePercent > closePercentThreshold {
             delegate?.hide(animator: self)
-            return
+            return nil
         }
 
-        if panTranslationY > closeAbsoluteThreshold {
+        if current.panTranslationY > closeAbsoluteThreshold {
             delegate?.hide(animator: self)
-            return
+            return nil
         }
 
-        closing = false
-        closeSpeed = 0.0
-        closePercent = 0.0
-        panTranslationY = 0.0
-
-        show { [weak self] _ in
-            guard let self = self else { return }
-            self.delegate?.panEnded(animator: self)
-        }
+        return .init()
     }
 }
