@@ -72,15 +72,20 @@ final class DropsTests: XCTestCase {
     func testDropsAreQueued() {
         let drops = Drops()
         (0..<5)
-            .map { Drop(title: "\($0)", duration: .seconds(0.1)) }
+            .map { Drop(title: "\($0)", duration: .seconds(0.5)) }
             .forEach(drops.show)
 
-        XCTAssertEqual(drops.queue.count, 5-1)
+        let exp1 = expectation(description: "All Drops are hidden")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if drops.queue.count == 5-1 {
+                exp1.fulfill()
+            }
+        }
 
-        let exp = expectation(description: "All Drops are hidden")
+        let exp2 = expectation(description: "All Drops are hidden")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             if drops.queue.isEmpty {
-                exp.fulfill()
+                exp2.fulfill()
             }
         }
 
@@ -89,15 +94,20 @@ final class DropsTests: XCTestCase {
 
     func testStaticDropsAreQueued() {
         (0..<5)
-            .map { Drop(title: "\($0)", duration: .seconds(0.1)) }
+            .map { Drop(title: "\($0)", duration: .seconds(0.5)) }
             .forEach(Drops.show)
 
-        XCTAssertEqual(Drops.shared.queue.count, 5-1)
+        let exp1 = expectation(description: "All Drops are hidden")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            if Drops.shared.queue.count == 5-1 {
+                exp1.fulfill()
+            }
+        }
 
-        let exp = expectation(description: "All Drops are hidden")
+        let exp2 = expectation(description: "All Drops are hidden")
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             if Drops.shared.queue.isEmpty {
-                exp.fulfill()
+                exp2.fulfill()
             }
         }
 

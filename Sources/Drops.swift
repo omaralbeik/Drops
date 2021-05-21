@@ -59,8 +59,10 @@ public final class Drops {
     /// Show a drop.
     /// - Parameter drop: `Drop` to show.
     public func show(_ drop: Drop) {
-        let presenter = Presenter(drop: drop, delegate: self)
-        enqueue(presenter: presenter)
+        DispatchQueue.main.async {
+            let presenter = Presenter(drop: drop, delegate: self)
+            self.enqueue(presenter: presenter)
+        }
     }
 
     /// Hide currently shown drop.
