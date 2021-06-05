@@ -68,6 +68,21 @@ Drops.show("Title")
 Drops.show(drop)
 ```
 
+###### SwiftUI
+```swift
+import SwiftUI
+import Drops
+
+struct ContentView: View {
+    var body: some View {
+        Button("Show Drop") {
+            Drops.show(drop)
+        }
+    }
+}
+```
+
+###### UIKit
 ```swift
 import UIKit
 import Drops
