@@ -42,4 +42,13 @@ final class PassthroughWindow: UIWindow {
     }
 
     private weak var hitTestView: UIView?
+    
+    /// Private API overrides for status bar appearance
+    /// http://www.openradar.me/15573442
+    /// http://www.openradar.me/30064691
+    /// https://openradar.appspot.com/23677818
+    @objc(_canAffectStatusBarAppearance)
+    private var canAffectStatusBarAppearance: Bool {
+        false
+    }
 }
