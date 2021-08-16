@@ -40,6 +40,7 @@ final class Presenter: NSObject {
 
     func show(completion: @escaping AnimationCompletion) {
         install()
+        willShow?()
         animator.show(context: context) { [weak self] completed in
             if let drop = self?.drop {
                 self?.announcementAccessibilityMessage(for: drop)

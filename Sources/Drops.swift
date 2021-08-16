@@ -130,7 +130,6 @@ public final class Drops {
             guard let self = self else { return }
             guard let current = self.current else { return }
 
-            current.willShow?()
             current.show { completed in
                 guard completed else {
                     self.dispatchQueue.sync {
