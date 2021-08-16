@@ -34,8 +34,9 @@ public final class Drops {
 
     /// Show a drop.
     /// - Parameter drop: `Drop` to show.
-    public static func show(_ drop: Drop) {
-        shared.show(drop)
+    /// - Parameter willShow: The closure to be executed when `Drop` is about to be added to a view hierarchy.
+    public static func show(_ drop: Drop, willShow: (() -> Void)? = nil) {
+        shared.show(drop, willShow: willShow)
     }
 
     /// Hide currently shown drop.
@@ -58,9 +59,10 @@ public final class Drops {
 
     /// Show a drop.
     /// - Parameter drop: `Drop` to show.
-    public func show(_ drop: Drop) {
+    /// - Parameter willShow: The closure to be executed when `Drop` is about to be added to a view hierarchy.
+    public func show(_ drop: Drop, willShow: (() -> Void)? = nil) {
         DispatchQueue.main.async {
-            let presenter = Presenter(drop: drop, delegate: self)
+            let presenter = Presenter(drop: drop, delegate: self, willShow: willShow)
             self.enqueue(presenter: presenter)
         }
     }
@@ -128,6 +130,7 @@ public final class Drops {
             guard let self = self else { return }
             guard let current = self.current else { return }
 
+            current.willShow?()
             current.show { completed in
                 guard completed else {
                     self.dispatchQueue.sync {

@@ -24,8 +24,9 @@
 import UIKit
 
 final class Presenter: NSObject {
-    init(drop: Drop, delegate: AnimatorDelegate) {
+    init(drop: Drop, delegate: AnimatorDelegate, willShow: (() -> Void)?) {
         self.drop = drop
+        self.willShow = willShow
         self.view = DropView(drop: drop)
         self.viewController = .init(value: WindowViewController())
         self.animator = Animator(position: drop.position, delegate: delegate)
@@ -33,6 +34,7 @@ final class Presenter: NSObject {
     }
 
     let drop: Drop
+    let willShow: (() -> Void)?
     let animator: Animator
     var isHiding = false
 
