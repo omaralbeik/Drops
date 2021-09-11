@@ -23,6 +23,7 @@
 
 import UIKit
 
+@available(iOSApplicationExtension, unavailable)
 /// An object representing a drop.
 public struct Drop: ExpressibleByStringLiteral {
     /// Create a new drop.

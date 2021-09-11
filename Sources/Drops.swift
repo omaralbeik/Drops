@@ -25,6 +25,7 @@ import UIKit
 
 typealias AnimationCompletion = (_ completed: Bool) -> Void
 
+@available(iOSApplicationExtension, unavailable)
 /// A shared class used to show and hide drops.
 public final class Drops {
 

@@ -23,7 +23,7 @@
 
 import UIKit
 
-final class PassthroughWindow: UIWindow {
+internal final class PassthroughWindow: UIWindow {
     init(hitTestView: UIView) {
         self.hitTestView = hitTestView
         super.init(frame: .zero)

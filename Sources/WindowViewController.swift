@@ -23,7 +23,7 @@
 
 import UIKit
 
-final class WindowViewController: UIViewController {
+internal final class WindowViewController: UIViewController {
     init() {
         let view = PassthroughView()
         let window = PassthroughWindow(hitTestView: view)
