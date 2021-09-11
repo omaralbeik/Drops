@@ -37,6 +37,12 @@ internal final class WindowViewController: UIViewController {
         return nil
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        // Workaround for https://github.com/omaralbeik/Drops/pull/22
+        let app = UIApplication.shared
+        return app.keyWindow?.rootViewController?.preferredStatusBarStyle ?? app.statusBarStyle
+    }
+
     func install() {
         window?.frame = UIScreen.main.bounds
         window?.isHidden = false
