@@ -40,7 +40,8 @@ internal final class WindowViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         // Workaround for https://github.com/omaralbeik/Drops/pull/22
         let app = UIApplication.shared
-        return app.keyWindow?.rootViewController?.preferredStatusBarStyle ?? app.statusBarStyle
+        let topViewController = app.keyWindow?.rootViewController?.top
+        return topViewController?.preferredStatusBarStyle ?? app.statusBarStyle
     }
 
     func install() {
@@ -63,4 +64,22 @@ internal final class WindowViewController: UIViewController {
     }
 
     var window: UIWindow?
+}
+
+private extension UIViewController {
+    var top: UIViewController? {
+        if let controller = self as? UINavigationController {
+            return controller.topViewController?.top
+        }
+        if let controller = self as? UISplitViewController {
+            return controller.viewControllers.last?.top
+        }
+        if let controller = self as? UITabBarController {
+            return controller.selectedViewController?.top
+        }
+        if let controller = presentedViewController {
+            return controller.top
+        }
+        return self
+    }
 }
