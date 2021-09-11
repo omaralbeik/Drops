@@ -96,16 +96,16 @@ struct ContentView: View {
     private func showDrop() {
         UIApplication.shared.endEditing()
 
-        let title = title.trimmingCharacters(in: .whitespacesAndNewlines)
-        let subtitle = subtitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        let aTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        let aSubtitle = subtitle.trimmingCharacters(in: .whitespacesAndNewlines)
         let position: Drop.Position = positionIndex == 0 ? .top : .bottom
 
         let icon = hasIcon ? UIImage(systemName: "star.fill") : nil
         let buttonIcon = hasActionIcon ? UIImage(systemName: "arrowshape.turn.up.left") : nil
 
         let drop = Drop(
-            title: title,
-            subtitle: subtitle,
+            title: aTitle,
+            subtitle: aSubtitle,
             icon: icon,
             action: .init(icon: buttonIcon, handler: {
                 print("Drop tapped")
