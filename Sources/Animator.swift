@@ -23,13 +23,13 @@
 
 import UIKit
 
-protocol AnimatorDelegate: AnyObject {
+internal protocol AnimatorDelegate: AnyObject {
     func hide(animator: Animator)
     func panStarted(animator: Animator)
     func panEnded(animator: Animator)
 }
 
-final class Animator {
+internal final class Animator {
     struct PanState: Equatable {
         var closing = false
         var closeSpeed: CGFloat = 0.0

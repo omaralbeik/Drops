@@ -23,7 +23,7 @@
 
 import UIKit
 
-final class WindowViewController: UIViewController {
+internal final class WindowViewController: UIViewController {
     init() {
         let view = PassthroughView()
         let window = PassthroughWindow(hitTestView: view)
@@ -35,6 +35,13 @@ final class WindowViewController: UIViewController {
 
     required init?(coder: NSCoder) {
         return nil
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        // Workaround for https://github.com/omaralbeik/Drops/pull/22
+        let app = UIApplication.shared
+        let topViewController = app.keyWindow?.rootViewController?.top
+        return topViewController?.preferredStatusBarStyle ?? app.statusBarStyle
     }
 
     func install() {
@@ -57,4 +64,22 @@ final class WindowViewController: UIViewController {
     }
 
     var window: UIWindow?
+}
+
+private extension UIViewController {
+    var top: UIViewController? {
+        if let controller = self as? UINavigationController {
+            return controller.topViewController?.top
+        }
+        if let controller = self as? UISplitViewController {
+            return controller.viewControllers.last?.top
+        }
+        if let controller = self as? UITabBarController {
+            return controller.selectedViewController?.top
+        }
+        if let controller = presentedViewController {
+            return controller.top
+        }
+        return self
+    }
 }

@@ -23,7 +23,7 @@
 
 import UIKit
 
-extension UIView {
+internal extension UIView {
     var safeArea: UILayoutGuide {
         if #available(iOS 11.0, *) {
             return safeAreaLayoutGuide

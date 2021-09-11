@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-struct Weak<T: AnyObject> {
+internal struct Weak<T: AnyObject> {
     init(value: T?) {
         self.value = value
     }

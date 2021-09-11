@@ -23,7 +23,7 @@
 
 import UIKit
 
-final class Presenter: NSObject {
+internal final class Presenter: NSObject {
     init(drop: Drop, delegate: AnimatorDelegate) {
         self.drop = drop
         self.view = DropView(drop: drop)

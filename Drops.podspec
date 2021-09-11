@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name = 'Drops'
-    s.version = '1.2.1'
+    s.version = '1.3.0'
     s.summary = 'A µFramework for showing iOS 13 like system alerts'
     s.description = <<-DESC
     A µFramework for showing alerts like the one used when copying from pasteboard or connecting Apple pencil.

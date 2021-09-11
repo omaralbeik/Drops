@@ -23,7 +23,7 @@
 
 import UIKit
 
-struct AnimationContext {
+internal struct AnimationContext {
     let view: UIView
     let container: UIView
 }
