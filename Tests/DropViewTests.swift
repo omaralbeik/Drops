@@ -161,6 +161,23 @@ final class DropViewTests: XCTestCase {
 
         waitForExpectations(timeout: 1)
     }
+    
+    func testLabelNumberOfLines() {
+        let drop1 = Drop(title: "Title")
+        let view1 = DropView(drop: drop1)
+        XCTAssertEqual(view1.titleLabel.numberOfLines, 1)
+        XCTAssertEqual(view1.subtitleLabel.numberOfLines, 1)
+        
+        let drop2 = Drop(
+            title: "Title",
+            titleNumberOfLines: 3,
+            subtitle: "Subtitle",
+            subtitleNumberOfLines: 0
+        )
+        let view2 = DropView(drop: drop2)
+        XCTAssertEqual(view2.titleLabel.numberOfLines, 3)
+        XCTAssertEqual(view2.subtitleLabel.numberOfLines, 0)
+    }
 }
 
 extension Drop: Equatable {

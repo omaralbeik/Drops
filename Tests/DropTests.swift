@@ -28,7 +28,9 @@ final class DropTests: XCTestCase {
     func testDefaultInitializer() {
         let drop = Drop(title: "Hello world")
         XCTAssertEqual(drop.title, "Hello world")
+        XCTAssertEqual(drop.titleNumberOfLines, 1)
         XCTAssertNil(drop.subtitle)
+        XCTAssertEqual(drop.subtitleNumberOfLines, 1)
         XCTAssertNil(drop.icon)
         XCTAssertNil(drop.action)
         XCTAssertEqual(drop.position, .top)
@@ -56,14 +58,18 @@ final class DropTests: XCTestCase {
         let action = Drop.Action(icon: dismissIcon) { }
         let drop = Drop(
             title: "Hello world",
+            titleNumberOfLines: 3,
             subtitle: "I'm a drop!",
+            subtitleNumberOfLines: 0,
             icon: icon,
             action: action,
             position: .bottom,
             duration: .seconds(1)
         )
         XCTAssertEqual(drop.title, "Hello world")
+        XCTAssertEqual(drop.titleNumberOfLines, 3)
         XCTAssertEqual(drop.subtitle, "I'm a drop!")
+        XCTAssertEqual(drop.subtitleNumberOfLines, 0)
         XCTAssertEqual(drop.icon, icon)
         XCTAssertEqual(drop.action?.icon, dismissIcon)
         XCTAssertEqual(drop.position, .bottom)
