@@ -29,7 +29,9 @@ public struct Drop: ExpressibleByStringLiteral {
     /// Create a new drop.
     /// - Parameters:
     ///   - title: Title.
+    ///   - titleNumberOfLines: Maximum number of lines that `title` can occupy. Defaults to `1`. A value of 0 means no limit.
     ///   - subtitle: Optional subtitle. Defaults to `nil`.
+    ///   - subtitleNumberOfLines: Maximum number of lines that `subtitle` can occupy. Defaults to `1`. A value of 0 means no limit.
     ///   - icon: Optional icon.
     ///   - action: Optional action.
     ///   - position: Position. Defaults to `Drop.Position.top`.
@@ -37,7 +39,9 @@ public struct Drop: ExpressibleByStringLiteral {
     ///   - accessibility: Accessibility options. Defaults to `nil` which will use "title, subtitle" as its message.
     public init(
         title: String,
+        titleNumberOfLines: Int = 1,
         subtitle: String? = nil,
+        subtitleNumberOfLines: Int = 1,
         icon: UIImage? = nil,
         action: Action? = nil,
         position: Position = .top,
@@ -45,9 +49,11 @@ public struct Drop: ExpressibleByStringLiteral {
         accessibility: Accessibility? = nil
     ) {
         self.title = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.titleNumberOfLines = titleNumberOfLines
         if let subtitle = subtitle?.trimmingCharacters(in: .whitespacesAndNewlines), !subtitle.isEmpty {
             self.subtitle = subtitle
         }
+        self.subtitleNumberOfLines = subtitleNumberOfLines
         self.icon = icon
         self.action = action
         self.position = position
@@ -60,6 +66,8 @@ public struct Drop: ExpressibleByStringLiteral {
     /// - Parameter message: Message to be announced when the drop is shown. Defaults to drop's "title, subtitle"
     public init(stringLiteral title: String) {
         self.title = title
+        self.titleNumberOfLines = 1
+        self.subtitleNumberOfLines = 1
         self.position = .top
         self.duration = .recommended
         self.accessibility = .init(message: title)
@@ -67,9 +75,15 @@ public struct Drop: ExpressibleByStringLiteral {
 
     /// Title.
     public var title: String
+    
+    /// Maximum number of lines that `title` can occupy. Defaults to `1`. A value of 0 means no limit.
+    public var titleNumberOfLines: Int
 
     /// Subtitle.
     public var subtitle: String?
+    
+    /// Maximum number of lines that `subtitle` can occupy. Defaults to `1`. A value of 0 means no limit.
+    public var subtitleNumberOfLines: Int
 
     /// Icon.
     public var icon: UIImage?

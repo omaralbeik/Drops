@@ -107,8 +107,10 @@ internal final class DropView: UIView {
         clipsToBounds = true
 
         titleLabel.text = drop.title
+        titleLabel.numberOfLines = drop.titleNumberOfLines
 
         subtitleLabel.text = drop.subtitle
+        subtitleLabel.numberOfLines = drop.subtitleNumberOfLines
         subtitleLabel.isHidden = drop.subtitle == nil
 
         imageView.image = drop.icon
@@ -139,7 +141,6 @@ internal final class DropView: UIView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
         label.textAlignment = .center
         if #available(iOS 13.0, *) {
             label.textColor = .label
@@ -155,7 +156,6 @@ internal final class DropView: UIView {
     lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
         label.textAlignment = .center
         if #available(iOS 13.0, *) {
             label.textColor = UIAccessibility.isDarkerSystemColorsEnabled ? .label : .secondaryLabel
