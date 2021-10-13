@@ -135,4 +135,113 @@ final class DropsTests: XCTestCase {
 
         XCTAssert(Drops.shared.queue.isEmpty)
     }
+ 
+    func testHandlers() {
+        let drops = Drops(delayBetweenDrops: 0)
+        let expectedDrop = Drop(title: "Hello world!", duration: .seconds(0.1))
+
+        let willShowDropExp = expectation(description: "willShowDrop is called")
+        let didShowDropExp = expectation(description: "didShowDrop is called")
+        let willDismissDropExp = expectation(description: "willDismissDrop is called")
+        let didDismissDropExp = expectation(description: "didDismissDrop is called")
+
+        drops.willShowDrop = { drop in
+            XCTAssertEqual(drop, expectedDrop)
+            willShowDropExp.fulfill()
+        }
+
+        drops.didShowDrop = { drop in
+            XCTAssertEqual(drop, expectedDrop)
+            didShowDropExp.fulfill()
+        }
+
+        drops.willDismissDrop = { drop in
+            XCTAssertEqual(drop, expectedDrop)
+            willDismissDropExp.fulfill()
+        }
+
+        drops.didDismissDrop = { drop in
+            XCTAssertEqual(drop, expectedDrop)
+            didDismissDropExp.fulfill()
+        }
+
+        drops.show(expectedDrop)
+
+        waitForExpectations(timeout: 1)
+    }
+
+    func testStaticHandlers() {
+        let expectedDrop = Drop(title: "Hello world!", duration: .seconds(0.1))
+
+        let willShowDropExp = expectation(description: "willShowDrop is called")
+        let didShowDropExp = expectation(description: "didShowDrop is called")
+        let willDismissDropExp = expectation(description: "willDismissDrop is called")
+        let didDismissDropExp = expectation(description: "didDismissDrop is called")
+
+        Drops.willShowDrop = { drop in
+            XCTAssertEqual(drop, expectedDrop)
+            willShowDropExp.fulfill()
+        }
+
+        Drops.didShowDrop = { drop in
+            XCTAssertEqual(drop, expectedDrop)
+            didShowDropExp.fulfill()
+        }
+
+        Drops.willDismissDrop = { drop in
+            XCTAssertEqual(drop, expectedDrop)
+            willDismissDropExp.fulfill()
+        }
+
+        Drops.didDismissDrop = { drop in
+            XCTAssertEqual(drop, expectedDrop)
+            didDismissDropExp.fulfill()
+        }
+
+        Drops.show(expectedDrop)
+
+        waitForExpectations(timeout: 1)
+    }
+
+    func testStaticHandlersSettersAndGetters() {
+        Drops.willShowDrop = { _ in }
+        XCTAssertNotNil(Drops.shared.willShowDrop)
+        Drops.willShowDrop = nil
+        XCTAssertNil(Drops.shared.willShowDrop)
+
+        Drops.didShowDrop = { _ in }
+        XCTAssertNotNil(Drops.shared.didShowDrop)
+        Drops.didShowDrop = nil
+        XCTAssertNil(Drops.shared.didShowDrop)
+
+        Drops.willDismissDrop = { _ in }
+        XCTAssertNotNil(Drops.shared.willDismissDrop)
+        Drops.willDismissDrop = nil
+        XCTAssertNil(Drops.shared.willDismissDrop)
+
+        Drops.didDismissDrop = { _ in }
+        XCTAssertNotNil(Drops.shared.didDismissDrop)
+        Drops.didDismissDrop = nil
+        XCTAssertNil(Drops.shared.didDismissDrop)
+
+        Drops.shared.willShowDrop = { _ in }
+        XCTAssertNotNil(Drops.willShowDrop)
+        Drops.shared.willShowDrop = nil
+        XCTAssertNil(Drops.willShowDrop)
+
+        Drops.shared.didShowDrop = { _ in }
+        XCTAssertNotNil(Drops.didShowDrop)
+        Drops.shared.didShowDrop = nil
+        XCTAssertNil(Drops.didShowDrop)
+
+        Drops.shared.willDismissDrop = { _ in }
+        XCTAssertNotNil(Drops.willDismissDrop)
+        Drops.shared.willDismissDrop = nil
+        XCTAssertNil(Drops.willDismissDrop)
+
+        Drops.shared.didDismissDrop = { _ in }
+        XCTAssertNotNil(Drops.didDismissDrop)
+        Drops.shared.didDismissDrop = nil
+        XCTAssertNil(Drops.didDismissDrop)
+    }
 }
