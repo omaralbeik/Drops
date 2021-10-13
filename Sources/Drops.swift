@@ -23,11 +23,13 @@
 
 import UIKit
 
-typealias AnimationCompletion = (_ completed: Bool) -> Void
+internal typealias AnimationCompletion = (_ completed: Bool) -> Void
 
-@available(iOSApplicationExtension, unavailable)
 /// A shared class used to show and hide drops.
+@available(iOSApplicationExtension, unavailable)
 public final class Drops {
+    /// Handler.
+    public typealias DropHandler = (Drop) -> Void
 
     // MARK: - Static
 
@@ -47,6 +49,30 @@ public final class Drops {
     /// Hide all drops.
     public static func hideAll() {
         shared.hideAll()
+    }
+
+    /// A handler to be called before a drop is presented.
+    public static var willShowDrop: DropHandler? {
+        get { shared.willShowDrop }
+        set { shared.willShowDrop = newValue }
+    }
+
+    /// A handler to be called after a drop is presented.
+    public static var didShowDrop: DropHandler? {
+        get { shared.didShowDrop }
+        set { shared.didShowDrop = newValue }
+    }
+
+    /// A handler to be called before a drop is dismissed.
+    public static var willDismissDrop: DropHandler? {
+        get { shared.willDismissDrop }
+        set { shared.willDismissDrop = newValue }
+    }
+
+    /// A handler to be called after a drop is dismissed.
+    public static var didDismissDrop: DropHandler? {
+        get { shared.didDismissDrop }
+        set { shared.didDismissDrop = newValue }
     }
 
     // MARK: - Instance
@@ -69,10 +95,12 @@ public final class Drops {
     /// Hide currently shown drop.
     public func hideCurrent() {
         guard let current = current, !current.isHiding else { return }
+        willDismissDrop?(current.drop)
         DispatchQueue.main.async {
             current.hide(animated: true) { [weak self] completed in
                 guard completed, let self = self else { return }
                 self.dispatchQueue.sync {
+                    self.didDismissDrop?(current.drop)
                     guard self.current === current else { return }
                     self.current = nil
                 }
@@ -87,6 +115,18 @@ public final class Drops {
             hideCurrent()
         }
     }
+
+    /// A handler to be called before a drop is presented.
+    public var willShowDrop: DropHandler?
+
+    /// A handler to be called after a drop is presented.
+    public var didShowDrop: DropHandler?
+
+    /// A handler to be called before a drop is dismissed.
+    public var willDismissDrop: DropHandler?
+
+    /// A handler to be called after a drop is dismissed.
+    public var didDismissDrop: DropHandler?
 
     // MARK: - Helpers
 
@@ -128,8 +168,9 @@ public final class Drops {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             guard let current = self.current else { return }
-
+            self.willShowDrop?(current.drop)
             current.show { completed in
+                self.didShowDrop?(current.drop)
                 guard completed else {
                     self.dispatchQueue.sync {
                         self.hide(presenter: current)

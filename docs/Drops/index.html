@@ -14,7 +14,6 @@
             </strong>
             <span>Documentation</span>
         </a>
-        <sup>Beta</sup>
     </header>
 
     <!--
@@ -26,7 +25,7 @@
     <nav>
         <div class="wrapper">
             <h2>On This Page</h2>
-            <ol><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#drops.init(delaybetweendrops:)">init(delay​Between​Drops:​)</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#drops.show(_:)">show(_:​)</a></li><li class="function"><a href="#drops.hidecurrent()">hide​Current()</a></li><li class="function"><a href="#drops.hideall()">hide​All()</a></li><li class="function"><a href="#drops.show(_:)">show(_:​)</a></li><li class="function"><a href="#drops.hidecurrent()">hide​Current()</a></li><li class="function"><a href="#drops.hideall()">hide​All()</a></li></ul></li></ol>
+            <ol><li><a href="#nested type aliases">Nested Type Aliases</a><ul><li class="typealias"><a href="#drops.drophandler">Drop​Handler</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#drops.init(delaybetweendrops:)">init(delay​Between​Drops:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#drops.willshowdrop">will​Show​Drop</a></li><li class="variable"><a href="#drops.didshowdrop">did​Show​Drop</a></li><li class="variable"><a href="#drops.willdismissdrop">will​Dismiss​Drop</a></li><li class="variable"><a href="#drops.diddismissdrop">did​Dismiss​Drop</a></li><li class="variable"><a href="#drops.willshowdrop">will​Show​Drop</a></li><li class="variable"><a href="#drops.didshowdrop">did​Show​Drop</a></li><li class="variable"><a href="#drops.willdismissdrop">will​Dismiss​Drop</a></li><li class="variable"><a href="#drops.diddismissdrop">did​Dismiss​Drop</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#drops.show(_:)">show(_:​)</a></li><li class="function"><a href="#drops.hidecurrent()">hide​Current()</a></li><li class="function"><a href="#drops.hideall()">hide​All()</a></li><li class="function"><a href="#drops.show(_:)">show(_:​)</a></li><li class="function"><a href="#drops.hidecurrent()">hide​Current()</a></li><li class="function"><a href="#drops.hideall()">hide​All()</a></li></ul></li></ol>
         </div>
     </nav>
 
@@ -38,22 +37,39 @@
 </h1>
 
 <div class="declaration">
-<pre class="highlight"><code><span class="keyword">public</span> <span class="attribute">final</span> <span class="keyword">class</span> <span class="type">Drops</span> </code></pre>
+<pre class="highlight"><code><html><body><span class="attribute">@</span><span class="attribute">available</span>(<span class="variable">iOSApplicationExtension</span>, <span class="variable">unavailable</span>)
+<span class="keyword">public</span> <span class="attribute">final</span> <span class="keyword">class</span> <span class="type">Drops</span>  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>A shared class used to show and hide drops.</p>
 
 </div>
 
+    <section id="nested type aliases">
+        <h2>Nested Type Aliases</h2>
+
+        <div role="article" class="typealias" id="drops.drophandler">
+    <h3>
+        <code><a href="#drops.drophandler">Drop​Handler</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">typealias</span> <span class="variable">DropHandler</span> = (<a href="https://omaralbeik.github.io/Drops/Drop"><span class="type">Drop</span></a>) -&gt; <span class="type">Void</span></body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>Handler.</p>
+
+</div>
+</div>
+    </section>
     <section id="initializers">
         <h2>Initializers</h2>
 
         <div role="article" class="initializer" id="drops.init(delaybetweendrops:)">
     <h3>
-        <code>init(delay​Between​Drops:​)</code>
+        <code><a href="#drops.init(delaybetweendrops:)">init(delay​Between​Drops:​)</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">delayBetweenDrops</span>: <span class="type">TimeInterval</span> = <span class="number literal">0.5</span>) </code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">delayBetweenDrops</span>: <span class="type">TimeInterval</span> = <span class="number literal">0.5</span>)  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Create a new instance with a custom delay between drops.</p>
@@ -80,15 +96,115 @@
 </table>
 </div>
     </section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="drops.willshowdrop">
+    <h3>
+        <code><a href="#drops.willshowdrop">will​Show​Drop</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">var</span> <span class="variable">willShowDrop</span>: <span class="type">DropHandler</span>?  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A handler to be called before a drop is presented.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drops.didshowdrop">
+    <h3>
+        <code><a href="#drops.didshowdrop">did​Show​Drop</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">var</span> <span class="variable">didShowDrop</span>: <span class="type">DropHandler</span>?  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A handler to be called after a drop is presented.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drops.willdismissdrop">
+    <h3>
+        <code><a href="#drops.willdismissdrop">will​Dismiss​Drop</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">var</span> <span class="variable">willDismissDrop</span>: <span class="type">DropHandler</span>?  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A handler to be called before a drop is dismissed.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drops.diddismissdrop">
+    <h3>
+        <code><a href="#drops.diddismissdrop">did​Dismiss​Drop</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">var</span> <span class="variable">didDismissDrop</span>: <span class="type">DropHandler</span>?  </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A handler to be called after a drop is dismissed.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drops.willshowdrop">
+    <h3>
+        <code><a href="#drops.willshowdrop">will​Show​Drop</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">willShowDrop</span>: <span class="type">DropHandler</span>? </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A handler to be called before a drop is presented.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drops.didshowdrop">
+    <h3>
+        <code><a href="#drops.didshowdrop">did​Show​Drop</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">didShowDrop</span>: <span class="type">DropHandler</span>? </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A handler to be called after a drop is presented.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drops.willdismissdrop">
+    <h3>
+        <code><a href="#drops.willdismissdrop">will​Dismiss​Drop</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">willDismissDrop</span>: <span class="type">DropHandler</span>? </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A handler to be called before a drop is dismissed.</p>
+
+</div>
+</div>
+<div role="article" class="variable" id="drops.diddismissdrop">
+    <h3>
+        <code><a href="#drops.diddismissdrop">did​Dismiss​Drop</a></code>
+    </h3>
+    <div class="declaration">
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">var</span> <span class="variable">didDismissDrop</span>: <span class="type">DropHandler</span>? </body></html></code></pre>
+</div>
+<div class="summary" role="doc-abstract">
+    <p>A handler to be called after a drop is dismissed.</p>
+
+</div>
+</div>
+    </section>
     <section id="methods">
         <h2>Methods</h2>
 
         <div role="article" class="function" id="drops.show(_:)">
     <h3>
-        <code>show(_:​)</code>
+        <code><a href="#drops.show(_:)">show(_:​)</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">show</span>(<span class="keyword">_</span> <span class="variable">drop</span>: <span class="type">Drop</span>) </code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">show</span>(<span class="keyword">_</span> <span class="variable">drop</span>: <a href="https://omaralbeik.github.io/Drops/Drop"><span class="type">Drop</span></a>)  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Show a drop.</p>
@@ -116,10 +232,10 @@
 </div>
 <div role="article" class="function" id="drops.hidecurrent()">
     <h3>
-        <code>hide​Current()</code>
+        <code><a href="#drops.hidecurrent()">hide​Current()</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">hideCurrent</span>() </code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">hideCurrent</span>()  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Hide currently shown drop.</p>
@@ -128,10 +244,10 @@
 </div>
 <div role="article" class="function" id="drops.hideall()">
     <h3>
-        <code>hide​All()</code>
+        <code><a href="#drops.hideall()">hide​All()</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">hideAll</span>() </code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">hideAll</span>()  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Hide all drops.</p>
@@ -140,10 +256,10 @@
 </div>
 <div role="article" class="function" id="drops.show(_:)">
     <h3>
-        <code>show(_:​)</code>
+        <code><a href="#drops.show(_:)">show(_:​)</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">show</span>(<span class="keyword">_</span> <span class="variable">drop</span>: <span class="type">Drop</span>) </code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">show</span>(<span class="keyword">_</span> <span class="variable">drop</span>: <a href="https://omaralbeik.github.io/Drops/Drop"><span class="type">Drop</span></a>)  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Show a drop.</p>
@@ -171,10 +287,10 @@
 </div>
 <div role="article" class="function" id="drops.hidecurrent()">
     <h3>
-        <code>hide​Current()</code>
+        <code><a href="#drops.hidecurrent()">hide​Current()</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">hideCurrent</span>() </code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">hideCurrent</span>()  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Hide currently shown drop.</p>
@@ -183,10 +299,10 @@
 </div>
 <div role="article" class="function" id="drops.hideall()">
     <h3>
-        <code>hide​All()</code>
+        <code><a href="#drops.hideall()">hide​All()</a></code>
     </h3>
     <div class="declaration">
-<pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">hideAll</span>() </code></pre>
+<pre class="highlight"><code><html><body><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">hideAll</span>()  </body></html></code></pre>
 </div>
 <div class="summary" role="doc-abstract">
     <p>Hide all drops.</p>
@@ -202,7 +318,7 @@
 
     <footer>
         <p>
-    Generated on <time datetime="2021-05-14T13:59:58+0200">14 May 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.6</span>.
+    Generated on <time datetime="2021-10-13T22:02:18+0200">October 13, 2021</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-rc.1</span>.
 </p>
     </footer>
 </body>

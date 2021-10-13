@@ -23,15 +23,17 @@
 
 import UIKit
 
-@available(iOSApplicationExtension, unavailable)
 /// An object representing a drop.
+@available(iOSApplicationExtension, unavailable)
 public struct Drop: ExpressibleByStringLiteral {
     /// Create a new drop.
     /// - Parameters:
     ///   - title: Title.
-    ///   - titleNumberOfLines: Maximum number of lines that `title` can occupy. Defaults to `1`. A value of 0 means no limit.
+    ///   - titleNumberOfLines: Maximum number of lines that `title` can occupy. Defaults to `1`.
+    ///   A value of 0 means no limit.
     ///   - subtitle: Optional subtitle. Defaults to `nil`.
-    ///   - subtitleNumberOfLines: Maximum number of lines that `subtitle` can occupy. Defaults to `1`. A value of 0 means no limit.
+    ///   - subtitleNumberOfLines: Maximum number of lines that `subtitle` can occupy. Defaults to `1`.
+    ///   A value of 0 means no limit.
     ///   - icon: Optional icon.
     ///   - action: Optional action.
     ///   - position: Position. Defaults to `Drop.Position.top`.
@@ -75,13 +77,13 @@ public struct Drop: ExpressibleByStringLiteral {
 
     /// Title.
     public var title: String
-    
+
     /// Maximum number of lines that `title` can occupy. Defaults to `1`. A value of 0 means no limit.
     public var titleNumberOfLines: Int
 
     /// Subtitle.
     public var subtitle: String?
-    
+
     /// Maximum number of lines that `subtitle` can occupy. Defaults to `1`. A value of 0 means no limit.
     public var subtitleNumberOfLines: Int
 
