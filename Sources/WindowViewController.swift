@@ -47,11 +47,15 @@ internal final class WindowViewController: UIViewController {
     func install() {
         window?.frame = UIScreen.main.bounds
         window?.isHidden = false
-        if #available(iOS 13, *) {
+        if
+            let window = window,
+            #available(iOS 13, *),
             let activeScene = UIApplication.shared.connectedScenes
-                .compactMap { $0 as? UIWindowScene }
-                .first { $0.activationState == .foregroundActive }
-            window?.windowScene = activeScene
+                .compactMap({ $0 as? UIWindowScene })
+                .first(where: { $0.activationState == .foregroundActive })
+        {
+            window.windowScene = activeScene
+            window.frame = activeScene.coordinateSpace.bounds
         }
     }
 
