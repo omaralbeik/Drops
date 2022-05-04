@@ -24,11 +24,11 @@
 import UIKit
 
 internal extension UIView {
-    var safeArea: UILayoutGuide {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide
-        } else {
-            return layoutMarginsGuide
-        }
+  var safeArea: UILayoutGuide {
+    if #available(iOS 11.0, *) {
+      return safeAreaLayoutGuide
+    } else {
+      return layoutMarginsGuide
     }
+  }
 }

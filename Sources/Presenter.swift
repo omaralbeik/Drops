@@ -24,72 +24,72 @@
 import UIKit
 
 internal final class Presenter: NSObject {
-    init(drop: Drop, delegate: AnimatorDelegate) {
-        self.drop = drop
-        self.view = DropView(drop: drop)
-        self.viewController = .init(value: WindowViewController())
-        self.animator = Animator(position: drop.position, delegate: delegate)
-        self.context = AnimationContext(view: view, container: maskingView)
+  init(drop: Drop, delegate: AnimatorDelegate) {
+    self.drop = drop
+    view = DropView(drop: drop)
+    viewController = .init(value: WindowViewController())
+    animator = Animator(position: drop.position, delegate: delegate)
+    context = AnimationContext(view: view, container: maskingView)
+  }
+
+  let drop: Drop
+  let animator: Animator
+  var isHiding = false
+
+  func show(completion: @escaping AnimationCompletion) {
+    install()
+    animator.show(context: context) { [weak self] completed in
+      if let drop = self?.drop {
+        self?.announcementAccessibilityMessage(for: drop)
+      }
+      completion(completed)
     }
+  }
 
-    let drop: Drop
-    let animator: Animator
-    var isHiding = false
-
-    func show(completion: @escaping AnimationCompletion) {
-        install()
-        animator.show(context: context) { [weak self] completed in
-            if let drop = self?.drop {
-                self?.announcementAccessibilityMessage(for: drop)
-            }
-            completion(completed)
-        }
+  func hide(animated: Bool, completion: @escaping AnimationCompletion) {
+    isHiding = true
+    let action = { [weak self] in
+      self?.viewController.value?.uninstall()
+      self?.maskingView.removeFromSuperview()
+      completion(true)
     }
-
-    func hide(animated: Bool, completion: @escaping AnimationCompletion) {
-        isHiding = true
-        let action = { [weak self] in
-            self?.viewController.value?.uninstall()
-            self?.maskingView.removeFromSuperview()
-            completion(true)
-        }
-        guard animated else {
-            action()
-            return
-        }
-        animator.hide(context: context) { _ in
-            action()
-        }
+    guard animated else {
+      action()
+      return
     }
-
-    let maskingView = PassthroughView()
-    let view: UIView
-    let viewController: Weak<WindowViewController>
-    let context: AnimationContext
-
-    func install() {
-        guard let container = viewController.value else { return }
-        guard let containerView = container.view else { return }
-
-        container.install()
-
-        maskingView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(maskingView)
-
-        NSLayoutConstraint.activate([
-            maskingView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            maskingView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            maskingView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            maskingView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-        ])
-
-        containerView.layoutIfNeeded()
+    animator.hide(context: context) { _ in
+      action()
     }
+  }
 
-    func announcementAccessibilityMessage(for drop: Drop) {
-        UIAccessibility.post(
-            notification: UIAccessibility.Notification.announcement,
-            argument: drop.accessibility.message
-        )
-    }
+  let maskingView = PassthroughView()
+  let view: UIView
+  let viewController: Weak<WindowViewController>
+  let context: AnimationContext
+
+  func install() {
+    guard let container = viewController.value else { return }
+    guard let containerView = container.view else { return }
+
+    container.install()
+
+    maskingView.translatesAutoresizingMaskIntoConstraints = false
+    containerView.addSubview(maskingView)
+
+    NSLayoutConstraint.activate([
+      maskingView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+      maskingView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+      maskingView.topAnchor.constraint(equalTo: containerView.topAnchor),
+      maskingView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+    ])
+
+    containerView.layoutIfNeeded()
+  }
+
+  func announcementAccessibilityMessage(for drop: Drop) {
+    UIAccessibility.post(
+      notification: UIAccessibility.Notification.announcement,
+      argument: drop.accessibility.message
+    )
+  }
 }

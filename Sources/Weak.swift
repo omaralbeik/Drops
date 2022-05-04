@@ -22,9 +22,9 @@
 //  THE SOFTWARE.
 
 internal struct Weak<T: AnyObject> {
-    init(value: T?) {
-        self.value = value
-    }
+  init(value: T?) {
+    self.value = value
+  }
 
-    weak var value: T?
+  weak var value: T?
 }

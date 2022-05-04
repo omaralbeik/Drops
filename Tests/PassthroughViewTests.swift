@@ -25,11 +25,11 @@ import XCTest
 @testable import Drops
 
 final class PassthroughViewTests: XCTestCase {
-    func testHitTest() {
-        let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        let view = PassthroughView(frame: frame)
+  func testHitTest() {
+    let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+    let view = PassthroughView(frame: frame)
 
-        let result = view.hitTest(.init(x: 50, y: 50), with: .init())
-        XCTAssertNil(result)
-    }
+    let result = view.hitTest(.init(x: 50, y: 50), with: .init())
+    XCTAssertNil(result)
+  }
 }

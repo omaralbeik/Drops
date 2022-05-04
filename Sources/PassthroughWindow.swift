@@ -24,22 +24,22 @@
 import UIKit
 
 internal final class PassthroughWindow: UIWindow {
-    init(hitTestView: UIView) {
-        self.hitTestView = hitTestView
-        super.init(frame: .zero)
-    }
+  init(hitTestView: UIView) {
+    self.hitTestView = hitTestView
+    super.init(frame: .zero)
+  }
 
-    required init?(coder: NSCoder) {
-        return nil
-    }
+  required init?(coder _: NSCoder) {
+    return nil
+  }
 
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let view = super.hitTest(point, with: event)
-        if let view = view, let hitTestView = hitTestView, hitTestView.isDescendant(of: view) && hitTestView != view {
-            return nil
-        }
-        return view
+  override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+    let view = super.hitTest(point, with: event)
+    if let view = view, let hitTestView = hitTestView, hitTestView.isDescendant(of: view), hitTestView != view {
+      return nil
     }
+    return view
+  }
 
-    private weak var hitTestView: UIView?
+  private weak var hitTestView: UIView?
 }

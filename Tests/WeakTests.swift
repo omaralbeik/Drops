@@ -25,15 +25,15 @@ import XCTest
 @testable import Drops
 
 final class WeakTests: XCTestCase {
-    func testWeak() {
-        var instance: TestClass? = TestClass()
-        let weak = Weak(value: instance)
+  func testWeak() {
+    var instance: TestClass? = TestClass()
+    let weak = Weak(value: instance)
+    
+    XCTAssertEqual(weak.value, instance)
 
-        XCTAssertEqual(weak.value, instance)
+    instance = nil
+    XCTAssertNil(weak.value)
+  }
 
-        instance = nil
-        XCTAssertNil(weak.value)
-    }
-
-    private final class TestClass: NSObject {}
+  private final class TestClass: NSObject {}
 }

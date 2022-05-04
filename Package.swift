@@ -25,17 +25,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "Drops",
-    platforms: [
-        .iOS(.v10)
-    ],
-    products: [
-        .library(name: "Drops", targets: ["Drops"])
-    ],
-    dependencies: [],
-    targets: [
-        .target(name: "Drops", dependencies: [], path: "Sources", exclude: ["Info.plist"]),
-        .testTarget(name: "DropsTests", dependencies: ["Drops"], path: "Tests", exclude: ["Info.plist"])
-    ],
-    swiftLanguageVersions: [.v5]
+  name: "Drops",
+  platforms: [
+    .iOS(.v10)
+  ],
+  products: [
+    .library(name: "Drops", targets: ["Drops"])
+  ],
+  dependencies: [],
+  targets: [
+    .target(name: "Drops", dependencies: [], path: "Sources", exclude: ["Info.plist"]),
+    .testTarget(name: "DropsTests", dependencies: ["Drops"], path: "Tests", exclude: ["Info.plist"])
+  ],
+  swiftLanguageVersions: [.v5]
 )

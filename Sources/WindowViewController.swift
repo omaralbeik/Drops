@@ -24,66 +24,66 @@
 import UIKit
 
 internal final class WindowViewController: UIViewController {
-    init() {
-        let view = PassthroughView()
-        let window = PassthroughWindow(hitTestView: view)
-        self.window = window
-        super.init(nibName: nil, bundle: nil)
-        self.view = view
-        window.rootViewController = self
-    }
+  init() {
+    let view = PassthroughView()
+    let window = PassthroughWindow(hitTestView: view)
+    self.window = window
+    super.init(nibName: nil, bundle: nil)
+    self.view = view
+    window.rootViewController = self
+  }
 
-    required init?(coder: NSCoder) {
-        return nil
-    }
+  required init?(coder _: NSCoder) {
+    return nil
+  }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        // Workaround for https://github.com/omaralbeik/Drops/pull/22
-        let app = UIApplication.shared
-        let topViewController = app.keyWindow?.rootViewController?.top
-        return topViewController?.preferredStatusBarStyle ?? app.statusBarStyle
-    }
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    // Workaround for https://github.com/omaralbeik/Drops/pull/22
+    let app = UIApplication.shared
+    let topViewController = app.keyWindow?.rootViewController?.top
+    return topViewController?.preferredStatusBarStyle ?? app.statusBarStyle
+  }
 
-    func install() {
-        window?.frame = UIScreen.main.bounds
-        window?.isHidden = false
-        if
-            let window = window,
-            #available(iOS 13, *),
-            let activeScene = UIApplication.shared.connectedScenes
-                .compactMap({ $0 as? UIWindowScene })
-                .first(where: { $0.activationState == .foregroundActive })
-        {
-            window.windowScene = activeScene
-            window.frame = activeScene.coordinateSpace.bounds
-        }
+  func install() {
+    window?.frame = UIScreen.main.bounds
+    window?.isHidden = false
+    if
+      let window = window,
+      #available(iOS 13, *),
+      let activeScene = UIApplication.shared.connectedScenes
+        .compactMap({ $0 as? UIWindowScene })
+        .first(where: { $0.activationState == .foregroundActive })
+    {
+      window.windowScene = activeScene
+      window.frame = activeScene.coordinateSpace.bounds
     }
+  }
 
-    func uninstall() {
-        window?.isHidden = true
-        if #available(iOS 13, *) {
-            window?.windowScene = nil
-        }
-        window = nil
+  func uninstall() {
+    window?.isHidden = true
+    if #available(iOS 13, *) {
+      window?.windowScene = nil
     }
+    window = nil
+  }
 
-    var window: UIWindow?
+  var window: UIWindow?
 }
 
 private extension UIViewController {
-    var top: UIViewController? {
-        if let controller = self as? UINavigationController {
-            return controller.topViewController?.top
-        }
-        if let controller = self as? UISplitViewController {
-            return controller.viewControllers.last?.top
-        }
-        if let controller = self as? UITabBarController {
-            return controller.selectedViewController?.top
-        }
-        if let controller = presentedViewController {
-            return controller.top
-        }
-        return self
+  var top: UIViewController? {
+    if let controller = self as? UINavigationController {
+      return controller.topViewController?.top
     }
+    if let controller = self as? UISplitViewController {
+      return controller.viewControllers.last?.top
+    }
+    if let controller = self as? UITabBarController {
+      return controller.selectedViewController?.top
+    }
+    if let controller = presentedViewController {
+      return controller.top
+    }
+    return self
+  }
 }

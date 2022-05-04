@@ -24,19 +24,19 @@
 @testable import Drops
 
 final class TestAnimatorDelegate: AnimatorDelegate {
-    var didCallHide = false
-    var didCallPanStarted = false
-    var didCallPanEnded = false
+  var didCallHide = false
+  var didCallPanStarted = false
+  var didCallPanEnded = false
 
-    func hide(animator: Animator) {
-        didCallHide = true
-    }
+  func hide(animator: Animator) {
+    didCallHide = true
+  }
 
-    func panStarted(animator: Animator) {
-        didCallPanStarted = true
-    }
+  func panStarted(animator: Animator) {
+    didCallPanStarted = true
+  }
 
-    func panEnded(animator: Animator) {
-        didCallPanEnded = true
-    }
+  func panEnded(animator: Animator) {
+    didCallPanEnded = true
+  }
 }

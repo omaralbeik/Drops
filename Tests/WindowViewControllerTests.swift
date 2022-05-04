@@ -25,27 +25,27 @@ import XCTest
 @testable import Drops
 
 final class WindowViewControllerTests: XCTestCase {
-    func testInitializer() {
-        let viewController = WindowViewController()
+  func testInitializer() {
+    let viewController = WindowViewController()
 
-        XCTAssert(viewController.view is PassthroughView)
-        XCTAssert(viewController.window is PassthroughWindow)
+    XCTAssert(viewController.view is PassthroughView)
+    XCTAssert(viewController.window is PassthroughWindow)
 
-        XCTAssertNil(WindowViewController(coder: NSCoder()))
-    }
+    XCTAssertNil(WindowViewController(coder: NSCoder()))
+  }
 
-    func testInstall() {
-        let viewController = WindowViewController()
-        viewController.install()
+  func testInstall() {
+    let viewController = WindowViewController()
+    viewController.install()
 
-        XCTAssertEqual(viewController.window?.frame, UIScreen.main.bounds)
-        XCTAssertEqual(viewController.window?.isHidden, false)
-    }
+    XCTAssertEqual(viewController.window?.frame, UIScreen.main.bounds)
+    XCTAssertEqual(viewController.window?.isHidden, false)
+  }
 
-    func testUninstall() {
-        let viewController = WindowViewController()
-        viewController.uninstall()
+  func testUninstall() {
+    let viewController = WindowViewController()
+    viewController.uninstall()
 
-        XCTAssertNil(viewController.window)
-    }
+    XCTAssertNil(viewController.window)
+  }
 }
