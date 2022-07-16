@@ -33,7 +33,7 @@ public final class Drops {
 
   // MARK: - Static
 
-  static let shared = Drops()
+  static var shared = Drops()
 
   /// Show a drop.
   /// - Parameter drop: `Drop` to show.

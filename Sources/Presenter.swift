@@ -80,7 +80,7 @@ internal final class Presenter: NSObject {
       maskingView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
       maskingView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
       maskingView.topAnchor.constraint(equalTo: containerView.topAnchor),
-      maskingView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+      maskingView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
     ])
 
     containerView.layoutIfNeeded()

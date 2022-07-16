@@ -25,97 +25,76 @@ import XCTest
 @testable import Drops
 
 final class DropsTests: XCTestCase {
-  func testShow() {
+  func testShow() async {
     let drops = Drops()
 
     let drop1 = Drop(title: "Test 1", duration: .seconds(1))
     drops.show(drop1)
-
-    let exp1 = expectation(description: "First Drops is presented")
-    DispatchQueue.main.async {
-      if drops.current != nil {
-        exp1.fulfill()
-      }
+    await Task.sleep(seconds: 0.1)
+    if drops.current == nil {
+      XCTFail("First drop is not presented")
     }
 
-    let exp2 = expectation(description: "First Drops is hidden")
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-      if drops.current == nil {
-        exp2.fulfill()
-      }
+    await Task.sleep(seconds: 2)
+    if drops.current != nil {
+      XCTFail("First drop is not hidden")
     }
-
-    waitForExpectations(timeout: 3)
   }
 
-  func testStaticShow() {
+  func testStaticShow() async {
+    Drops.shared = .init(delayBetweenDrops: 0)
+
     let drop1 = Drop(title: "Test 1", duration: .seconds(1))
     Drops.show(drop1)
 
-    let exp1 = expectation(description: "First Drops is presented")
-    DispatchQueue.main.async {
-      if Drops.shared.current != nil {
-        exp1.fulfill()
-      }
+    await Task.sleep(seconds: 0.1)
+    if Drops.shared.current == nil {
+      XCTFail("First drop is not presented")
     }
 
-    let exp2 = expectation(description: "First Drops is hidden")
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-      if Drops.shared.current == nil {
-        exp2.fulfill()
-      }
+    await Task.sleep(seconds: 2)
+    if Drops.shared.current != nil {
+      XCTFail("First drop is not hidden")
     }
-
-    waitForExpectations(timeout: 3)
   }
 
-  func testDropsAreQueued() {
-    let drops = Drops()
+  func testDropsAreQueued() async throws {
+    let drops = Drops(delayBetweenDrops: 0)
     (0..<5)
-      .map { Drop(title: "\($0)", duration: .seconds(0.5)) }
+      .map { Drop(title: "\($0)", duration: .seconds(0.1)) }
       .forEach(drops.show)
 
-    let exp1 = expectation(description: "All Drops are hidden")
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-      if drops.queue.count == 5-1 {
-        exp1.fulfill()
-      }
+    await Task.sleep(seconds: 0.1)
+    if drops.queue.count != 4 {
+      XCTFail("First drop is not hidden")
     }
 
-    let exp2 = expectation(description: "All Drops are hidden")
-    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-      if drops.queue.isEmpty {
-        exp2.fulfill()
-      }
+    await Task.sleep(seconds: 5)
+    if drops.queue.isEmpty == false {
+      XCTFail("All drops are not hidden")
     }
-
-    waitForExpectations(timeout: 4)
   }
 
-  func testStaticDropsAreQueued() {
+  func testStaticDropsAreQueued() async {
+    Drops.shared = .init(delayBetweenDrops: 0)
+
     (0..<5)
-      .map { Drop(title: "\($0)", duration: .seconds(0.5)) }
+      .map { Drop(title: "\($0)", duration: .seconds(0.1)) }
       .forEach(Drops.show)
 
-    let exp1 = expectation(description: "All Drops are hidden")
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-      if Drops.shared.queue.count == 5-1 {
-        exp1.fulfill()
-      }
+    await Task.sleep(seconds: 0.1)
+    if Drops.shared.queue.count != 4 {
+      XCTFail("First drop is not hidden")
     }
 
-    let exp2 = expectation(description: "All Drops are hidden")
-    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-      if Drops.shared.queue.isEmpty {
-        exp2.fulfill()
-      }
+    await Task.sleep(seconds: 5)
+    if Drops.shared.queue.isEmpty == false {
+      XCTFail("All drops are not hidden")
     }
-
-    waitForExpectations(timeout: 4)
   }
 
   func testHideAll() {
-    let drops = Drops()
+    let drops = Drops(delayBetweenDrops: 0)
 
     (0..<10)
       .map { Drop(title: "\($0)", duration: .seconds(0.1)) }
@@ -127,6 +106,8 @@ final class DropsTests: XCTestCase {
   }
 
   func testStaticHideAll() {
+    Drops.shared = .init(delayBetweenDrops: 0)
+
     (0..<10)
       .map { Drop(title: "\($0)", duration: .seconds(0.1)) }
       .forEach(Drops.show)
@@ -167,10 +148,12 @@ final class DropsTests: XCTestCase {
 
     drops.show(expectedDrop)
 
-    waitForExpectations(timeout: 1)
+    waitForExpectations(timeout: 2)
   }
 
   func testStaticHandlers() {
+    Drops.shared = .init(delayBetweenDrops: 0)
+
     let expectedDrop = Drop(title: "Hello world!", duration: .seconds(0.1))
 
     let willShowDropExp = expectation(description: "willShowDrop is called")
@@ -200,7 +183,7 @@ final class DropsTests: XCTestCase {
 
     Drops.show(expectedDrop)
 
-    waitForExpectations(timeout: 1)
+    waitForExpectations(timeout: 2)
   }
 
   func testStaticHandlersSettersAndGetters() {
@@ -243,5 +226,16 @@ final class DropsTests: XCTestCase {
     XCTAssertNotNil(Drops.didDismissDrop)
     Drops.shared.didDismissDrop = nil
     XCTAssertNil(Drops.didDismissDrop)
+  }
+}
+
+private extension Task where Success == Never, Failure == Never {
+  static func sleep(seconds: Double) async {
+    let duration = UInt64(seconds * 1_000_000_000)
+    do {
+      try await Task.sleep(nanoseconds: duration)
+    } catch {
+      XCTFail(error.localizedDescription)
+    }
   }
 }

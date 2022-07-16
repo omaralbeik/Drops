@@ -28,7 +28,7 @@ final class WeakTests: XCTestCase {
   func testWeak() {
     var instance: TestClass? = TestClass()
     let weak = Weak(value: instance)
-    
+
     XCTAssertEqual(weak.value, instance)
 
     instance = nil
