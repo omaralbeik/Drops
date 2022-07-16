@@ -25,14 +25,14 @@ import SwiftUI
 import Drops
 
 struct ContentView: View {
-  
+
   @State var title: String = "Hello There!"
   @State var subtitle: String = "Use Drops to show alerts"
   @State var positionIndex: Int = 0
   @State var duration: TimeInterval = 2.0
   @State var hasIcon: Bool = false
   @State var hasActionIcon: Bool = false
-  
+
   var body: some View {
     ZStack {
       Color(.secondarySystemBackground).ignoresSafeArea(.all)
@@ -92,17 +92,17 @@ struct ContentView: View {
       UIApplication.shared.endEditing()
     }
   }
-  
+
   private func showDrop() {
     UIApplication.shared.endEditing()
-    
+
     let aTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
     let aSubtitle = subtitle.trimmingCharacters(in: .whitespacesAndNewlines)
     let position: Drop.Position = positionIndex == 0 ? .top : .bottom
-    
+
     let icon = hasIcon ? UIImage(systemName: "star.fill") : nil
     let buttonIcon = hasActionIcon ? UIImage(systemName: "arrowshape.turn.up.left") : nil
-    
+
     let drop = Drop(
       title: aTitle,
       subtitle: aSubtitle,

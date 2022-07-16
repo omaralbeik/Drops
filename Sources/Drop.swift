@@ -63,7 +63,7 @@ public struct Drop: ExpressibleByStringLiteral {
     self.accessibility = accessibility
     ?? .init(message: [title, subtitle].compactMap { $0 }.joined(separator: ", "))
   }
-  
+
   /// Create a new accessibility object.
   /// - Parameter message: Message to be announced when the drop is shown. Defaults to drop's "title, subtitle"
   public init(stringLiteral title: String) {
@@ -74,31 +74,31 @@ public struct Drop: ExpressibleByStringLiteral {
     duration = .recommended
     accessibility = .init(message: title)
   }
-  
+
   /// Title.
   public var title: String
-  
-  /// Maximum number of lines that `title` can occupy. Defaults to `1`. A value of 0 means no limit.
+
+  /// Maximum number of lines that `title` can occupy. A value of 0 means no limit.
   public var titleNumberOfLines: Int
-  
+
   /// Subtitle.
   public var subtitle: String?
-  
-  /// Maximum number of lines that `subtitle` can occupy. Defaults to `1`. A value of 0 means no limit.
+
+  /// Maximum number of lines that `subtitle` can occupy. A value of 0 means no limit.
   public var subtitleNumberOfLines: Int
-  
+
   /// Icon.
   public var icon: UIImage?
-  
+
   /// Action.
   public var action: Action?
-  
+
   /// Position.
   public var position: Position
-  
+
   /// Duration.
   public var duration: Duration
-  
+
   /// Accessibility.
   public var accessibility: Accessibility
 }
@@ -120,13 +120,13 @@ public extension Drop {
     case recommended
     /// Hides the drop after the specified number of seconds.
     case seconds(TimeInterval)
-    
+
     /// Create a new duration object.
     /// - Parameter value: Duration in seconds
     public init(floatLiteral value: TimeInterval) {
       self = .seconds(value)
     }
-    
+
     internal var value: TimeInterval {
       switch self {
       case .recommended:
@@ -149,10 +149,10 @@ public extension Drop {
       self.icon = icon
       self.handler = handler
     }
-    
+
     /// Icon.
     public var icon: UIImage?
-    
+
     /// Handler.
     public var handler: () -> Void
   }
@@ -166,13 +166,13 @@ public extension Drop {
     public init(message: String) {
       self.message = message
     }
-    
+
     /// Create a new accessibility object.
     /// - Parameter message: Message to be announced when the drop is shown. Defaults to drop's "title, subtitle"
     public init(stringLiteral message: String) {
       self.message = message
     }
-    
+
     /// Accessibility message to be announced when the drop is shown.
     public let message: String
   }

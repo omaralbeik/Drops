@@ -51,7 +51,6 @@ final class DropTests: XCTestCase {
     XCTAssertEqual(drop2.accessibility.message, "Alert: Hello world")
   }
 
-  @available(iOS 13.0, *)
   func testInitializer() {
     let icon = UIImage(systemName: "drop")
     let dismissIcon = UIImage(systemName: "xmark")
