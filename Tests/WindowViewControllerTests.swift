@@ -34,6 +34,11 @@ final class WindowViewControllerTests: XCTestCase {
     XCTAssertNil(WindowViewController(coder: NSCoder()))
   }
 
+  func testPreferredStatusBarStyle() {
+    let viewController = WindowViewController()
+    XCTAssertEqual(viewController.preferredStatusBarStyle, .default)
+  }
+
   func testInstall() {
     let viewController = WindowViewController()
     viewController.install()
@@ -47,5 +52,22 @@ final class WindowViewControllerTests: XCTestCase {
     viewController.uninstall()
 
     XCTAssertNil(viewController.window)
+  }
+
+  func testTopViewController() {
+    let navController = UINavigationController()
+    XCTAssertEqual(navController.top, navController.topViewController)
+
+    let splitController = UISplitViewController()
+    let controller = UIViewController()
+    splitController.viewControllers = [controller]
+    XCTAssertEqual(splitController.top, controller)
+
+    let tabBarController = UITabBarController()
+    tabBarController.viewControllers = [controller]
+    tabBarController.selectedIndex = 0
+    XCTAssertEqual(tabBarController.top, controller)
+
+    XCTAssertEqual(controller.top, controller)
   }
 }
