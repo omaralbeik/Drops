@@ -142,7 +142,7 @@ pod 'Drops', :git => 'https://github.com/omaralbeik/Drops.git', :tag => '1.5.0'
 To integrate Drops into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your Cartfile:
 
 ```
-github "omaralbeik/Drops" ~> 1.2
+github "omaralbeik/Drops" ~> 1.5.0
 ```
 
 ### Manually
