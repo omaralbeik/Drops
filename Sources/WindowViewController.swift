@@ -65,7 +65,7 @@ internal final class WindowViewController: UIViewController {
   var window: UIWindow?
 }
 
-private extension UIApplication {
+internal extension UIApplication {
   var activeWindowScene: UIWindowScene? {
     return connectedScenes
       .compactMap { $0 as? UIWindowScene }
@@ -73,7 +73,7 @@ private extension UIApplication {
   }
 }
 
-private extension UIViewController {
+internal extension UIViewController {
   var top: UIViewController? {
     if let controller = self as? UINavigationController {
       return controller.topViewController?.top
