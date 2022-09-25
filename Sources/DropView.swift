@@ -21,6 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 import UIKit
 
 internal final class DropView: UIView {
@@ -226,3 +227,4 @@ extension CGRect {
     return min(width, height) / 2
   }
 }
+#endif
