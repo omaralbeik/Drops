@@ -21,6 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 import XCTest
 @testable import Drops
 
@@ -81,3 +82,4 @@ final class DropTests: XCTestCase {
     XCTAssertEqual(Drop.Duration.seconds(1).value, 1)
   }
 }
+#endif

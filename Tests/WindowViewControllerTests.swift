@@ -21,6 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 import XCTest
 @testable import Drops
 
@@ -71,3 +72,4 @@ final class WindowViewControllerTests: XCTestCase {
     XCTAssertEqual(controller.top, controller)
   }
 }
+#endif

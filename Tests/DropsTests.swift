@@ -21,6 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 import XCTest
 @testable import Drops
 
@@ -239,3 +240,4 @@ private extension Task where Success == Never, Failure == Never {
     }
   }
 }
+#endif

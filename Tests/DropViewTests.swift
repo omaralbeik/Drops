@@ -21,6 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 import XCTest
 @testable import Drops
 
@@ -179,3 +180,4 @@ extension Drop: Equatable {
     return lhs.title == rhs.title
   }
 }
+#endif
