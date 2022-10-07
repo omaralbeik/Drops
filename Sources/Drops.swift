@@ -20,7 +20,7 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
-
+#if os(iOS)
 import UIKit
 
 internal typealias AnimationCompletion = (_ completed: Bool) -> Void
@@ -218,3 +218,4 @@ extension Drops: AnimatorDelegate {
     return queue.first { $0.animator === animator }
   }
 }
+#endif

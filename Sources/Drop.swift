@@ -21,6 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 import UIKit
 
 /// An object representing a drop.
@@ -177,3 +178,4 @@ public extension Drop {
     public let message: String
   }
 }
+#endif

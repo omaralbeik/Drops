@@ -21,6 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 import UIKit
 
 internal final class PassthroughView: UIView {
@@ -29,3 +30,4 @@ internal final class PassthroughView: UIView {
     return view == self ? nil : view
   }
 }
+#endif
