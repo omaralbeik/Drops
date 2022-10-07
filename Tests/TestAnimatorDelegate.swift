@@ -21,6 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 @testable import Drops
 
 final class TestAnimatorDelegate: AnimatorDelegate {
@@ -40,3 +41,4 @@ final class TestAnimatorDelegate: AnimatorDelegate {
     didCallPanEnded = true
   }
 }
+#endif

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name = 'Drops'
-    s.version = '1.5.0'
+    s.version = '1.6.0'
     s.summary = 'A µFramework for showing iOS 13 like system alerts'
     s.description = <<-DESC
     A µFramework for showing alerts like the one used when copying from pasteboard or connecting Apple pencil.
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
     s.module_name  = 'Drops'
     s.source = { :git => 'https://github.com/omaralbeik/Drops.git', :tag => s.version }
     s.source_files = 'Sources/**/*.swift'
-    s.swift_versions = ['5.1', '5.2', '5.3']
+    s.swift_versions = ['5.5', '5.6', '5.7']
     s.requires_arc = true
     s.ios.deployment_target = '13.0'
 end

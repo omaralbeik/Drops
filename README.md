@@ -119,7 +119,7 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a tool for ma
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/omaralbeik/Drops.git", from: "1.5.0")
+    .package(url: "https://github.com/omaralbeik/Drops.git", from: "1.6.0")
 ]
 ```
 
@@ -134,7 +134,7 @@ $ swift build
 To integrate Drops into your Xcode project using [CocoaPods](https://cocoapods.org), specify it in your Podfile:
 
 ```rb
-pod 'Drops', :git => 'https://github.com/omaralbeik/Drops.git', :tag => '1.5.0'
+pod 'Drops', :git => 'https://github.com/omaralbeik/Drops.git', :tag => '1.6.0'
 ```
 
 ### Carthage
@@ -142,7 +142,7 @@ pod 'Drops', :git => 'https://github.com/omaralbeik/Drops.git', :tag => '1.5.0'
 To integrate Drops into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), specify it in your Cartfile:
 
 ```
-github "omaralbeik/Drops" ~> 1.5.0
+github "omaralbeik/Drops" ~> 1.6.0
 ```
 
 ### Manually

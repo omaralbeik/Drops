@@ -21,6 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#if os(iOS)
 internal struct Weak<T: AnyObject> {
   init(value: T?) {
     self.value = value
@@ -28,3 +29,4 @@ internal struct Weak<T: AnyObject> {
 
   weak var value: T?
 }
+#endif
