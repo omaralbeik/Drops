@@ -124,7 +124,7 @@ internal final class Animator {
         case .top:
           view?.transform = CGAffineTransform(translationX: 0, y: -frame.height)
         case .bottom:
-          view?.transform = CGAffineTransform(translationX: 0, y: frame.maxY + frame.height)
+          view?.transform = CGAffineTransform(translationX: 0, y: frame.height)
         }
       },
       completion: completion
