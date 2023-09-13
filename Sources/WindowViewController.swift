@@ -39,13 +39,20 @@ internal final class WindowViewController: UIViewController {
   }
 
   override var preferredStatusBarStyle: UIStatusBarStyle {
-    // Workaround for https://github.com/omaralbeik/Drops/pull/22
-    let app = UIApplication.shared
-    let windowScene = app.activeWindowScene
-    let topViewController = windowScene?.windows.first(where: \.isKeyWindow)?.rootViewController?.top
-    return topViewController?.preferredStatusBarStyle
-      ?? windowScene?.statusBarManager?.statusBarStyle
-      ?? .default
+    if #available(iOS 17.0, *) {
+        // https://github.com/omaralbeik/Drops/issues/45
+        // Disable "Workaround for UIKit bug" on iOS 17
+        // https://github.com/omaralbeik/Drops/commit/6f0cd307523466f6f3102d0496dac24d8be75abf
+        return super.preferredStatusBarStyle
+    } else {
+      // Workaround for https://github.com/omaralbeik/Drops/pull/22
+      let app = UIApplication.shared
+      let windowScene = app.activeWindowScene
+      let topViewController = windowScene?.windows.first(where: \.isKeyWindow)?.rootViewController?.top
+      return topViewController?.preferredStatusBarStyle
+        ?? windowScene?.statusBarManager?.statusBarStyle
+        ?? .default
+    }
   }
 
   func install() {
