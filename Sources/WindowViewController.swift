@@ -42,7 +42,9 @@ internal final class WindowViewController: UIViewController {
     // Workaround for https://github.com/omaralbeik/Drops/pull/22
     let app = UIApplication.shared
     let windowScene = app.activeWindowScene
-    let topViewController = windowScene?.windows.first(where: \.isKeyWindow)?.rootViewController?.top
+		// Workaround for https://github.com/omaralbeik/Drops/issues/45
+    var topViewController = windowScene?.windows.first(where: \.isKeyWindow)?.rootViewController?.top
+		if topViewController == self { topViewController = nil }
     return topViewController?.preferredStatusBarStyle
       ?? windowScene?.statusBarManager?.statusBarStyle
       ?? .default
