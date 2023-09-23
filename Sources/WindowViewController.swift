@@ -43,6 +43,9 @@ internal final class WindowViewController: UIViewController {
     let app = UIApplication.shared
     let windowScene = app.activeWindowScene
     let topViewController = windowScene?.windows.first(where: \.isKeyWindow)?.rootViewController?.top
+    if let controller = topViewController, controller === self {
+      return .default
+    }
     return topViewController?.preferredStatusBarStyle
       ?? windowScene?.statusBarManager?.statusBarStyle
       ?? .default
