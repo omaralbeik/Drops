@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import UIKit
 
 internal final class WindowViewController: UIViewController {
@@ -52,7 +52,9 @@ internal final class WindowViewController: UIViewController {
   }
 
   func install() {
+      #if os(iOS)
     window?.frame = UIScreen.main.bounds
+      #endif
     window?.isHidden = false
     if let window = window, let activeScene = UIApplication.shared.activeWindowScene {
       window.windowScene = activeScene
