@@ -40,6 +40,9 @@ public struct Drop: ExpressibleByStringLiteral {
   ///   - position: Position. Defaults to `Drop.Position.top`.
   ///   - duration: Duration. Defaults to `Drop.Duration.recommended`.
   ///   - accessibility: Accessibility options. Defaults to `nil` which will use "title, subtitle" as its message.
+  ///   - titleColor: Title color. Defaults to `.label`.
+  ///   - subtitleColor: Subtitle color. Defaults to `.secondaryLabel`.
+  ///   - iconColor: Icon color. Defaults to `.secondaryLabel`.
   public init(
     title: String,
     titleNumberOfLines: Int = 1,
@@ -49,7 +52,10 @@ public struct Drop: ExpressibleByStringLiteral {
     action: Action? = nil,
     position: Position = .top,
     duration: Duration = .recommended,
-    accessibility: Accessibility? = nil
+    accessibility: Accessibility? = nil,
+    titleColor: UIColor = .label,
+    subtitleColor: UIColor = .secondaryLabel,
+    iconColor: UIColor = .secondaryLabel
   ) {
     self.title = title.trimmingCharacters(in: .whitespacesAndNewlines)
     self.titleNumberOfLines = titleNumberOfLines
@@ -63,6 +69,9 @@ public struct Drop: ExpressibleByStringLiteral {
     self.duration = duration
     self.accessibility = accessibility
     ?? .init(message: [title, subtitle].compactMap { $0 }.joined(separator: ", "))
+    self.titleColor = titleColor
+    self.subtitleColor = subtitleColor
+    self.iconColor = iconColor
   }
 
   /// Create a new accessibility object.
@@ -74,6 +83,9 @@ public struct Drop: ExpressibleByStringLiteral {
     position = .top
     duration = .recommended
     accessibility = .init(message: title)
+    titleColor = .label
+    subtitleColor = .secondaryLabel
+      iconColor = .secondaryLabel
   }
 
   /// Title.
@@ -102,6 +114,15 @@ public struct Drop: ExpressibleByStringLiteral {
 
   /// Accessibility.
   public var accessibility: Accessibility
+    
+  /// Title Color.
+  public var titleColor: UIColor
+  
+  /// Subtitle Color.
+  public var subtitleColor: UIColor
+  
+  /// Title Color.
+  public var iconColor: UIColor
 }
 
 public extension Drop {
