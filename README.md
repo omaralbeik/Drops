@@ -15,6 +15,7 @@ A µFramework for showing alerts like the one used when copying from pasteboard 
 - iOS 13+
 - Can be used in SwiftUI and UIKit applications
 - Light/Dark modes
+- Custom colors for title, subtitle and icon
 - Interactive dismissal
 - Queue to show consecutive drops
 - Support dynamic font sizing
@@ -54,7 +55,8 @@ let drop = Drop(
     },
     position: .bottom,
     duration: 5.0,
-    accessibility: "Alert: Title, Subtitle"
+    accessibility: "Alert: Title, Subtitle",
+    titleColor: .blue
 )
 ```
 

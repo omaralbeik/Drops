@@ -105,13 +105,16 @@ internal final class DropView: UIView {
 
     titleLabel.text = drop.title
     titleLabel.numberOfLines = drop.titleNumberOfLines
+    titleLabel.textColor = drop.titleColor
 
     subtitleLabel.text = drop.subtitle
     subtitleLabel.numberOfLines = drop.subtitleNumberOfLines
     subtitleLabel.isHidden = drop.subtitle == nil
+    subtitleLabel.textColor = drop.subtitleColor
 
     imageView.image = drop.icon
     imageView.isHidden = drop.icon == nil
+    imageView.tintColor = drop.iconColor
 
     button.setImage(drop.action?.icon, for: .normal)
     button.isHidden = drop.action?.icon == nil
