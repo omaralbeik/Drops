@@ -21,7 +21,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import UIKit
 
 internal final class DropView: UIView {
@@ -126,7 +126,9 @@ internal final class DropView: UIView {
     layer.shadowRadius = 25
     layer.shadowOpacity = 0.15
     layer.shouldRasterize = true
+      #if os(iOS)
     layer.rasterizationScale = UIScreen.main.scale
+      #endif
     layer.masksToBounds = false
   }
 
